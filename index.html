@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>뉴런소프트 매일 10제 · POC 문항추천/풀이</title>
+  <title>NEURONSOFT 매일 10제 · Math/English POC</title>
   <style>
     :root{
       --font-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
@@ -11,346 +11,488 @@
       --ink:#0b1220; --ink-soft:#172033; --charcoal:#273244; --slate:#566176; --steel:#7a8496; --stone:#9aa3b4;
       --surface:#f6f8fb; --surface-soft:#fafbfe; --canvas:#ffffff; --hairline:#e6e9ef;
       --blue-50:#eef5ff; --blue-100:#dbeafe; --blue-200:#bfdbfe; --blue-300:#93c5fd; --blue-400:#60a5fa; --blue-500:#2563eb; --blue-600:#1d4ed8; --blue-700:#1e40af;
+      --red-50:#fff1f2; --red-100:#ffe4e6; --red-200:#fecdd3; --red-300:#fda4af; --red-400:#fb7185; --red-500:#e11d48; --red-600:#be123c; --red-700:#9f1239;
       --danger:#dc2626; --danger-bg:#fef2f2; --warn:#ea580c; --warn-bg:#fff7ed; --caution:#ca8a04; --caution-bg:#fffbeb; --success:#047857; --success-bg:#ecfdf5;
-      --shadow-1:0 10px 30px rgba(15,23,42,.06); --shadow-2:0 24px 70px rgba(15,23,42,.14); --shadow-blue:0 18px 45px rgba(37,99,235,.22);
+      --theme:#2563eb; --theme-2:#60a5fa; --theme-50:#eef5ff; --theme-100:#dbeafe; --theme-200:#bfdbfe; --theme-700:#1e40af;
+      --shadow-1:0 10px 30px rgba(15,23,42,.06); --shadow-2:0 24px 70px rgba(15,23,42,.14); --shadow-theme:0 18px 45px rgba(37,99,235,.22);
       --ease:cubic-bezier(.2,.8,.2,1);
     }
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
-    button,input,textarea{font-family:inherit} button{cursor:pointer}.hidden{display:none!important}.mono{font-family:var(--font-mono)}
-    .app{max-width:1160px;margin:0 auto;padding:34px 28px 80px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:14px}.logo{width:38px;height:38px;border-radius:13px;background:var(--ink);position:relative;box-shadow:var(--shadow-1)}.logo:before{content:"";position:absolute;inset:9px;border:2px solid var(--blue-400);border-radius:10px;transform:rotate(45deg)}.brand h1{font-size:18px;margin:0;font-family:var(--font-mono);letter-spacing:.18em}.brand small{display:block;color:var(--steel);font-weight:700;letter-spacing:.08em;margin-top:4px}.user-tabs{display:flex;gap:8px;background:var(--canvas);border:1px solid var(--hairline);border-radius:999px;padding:6px;box-shadow:var(--shadow-1)}.user-tabs button{border:0;border-radius:999px;background:transparent;color:var(--slate);padding:10px 15px;font-weight:800;font-size:13px}.user-tabs button.active{background:var(--ink);color:#fff}.panel{background:var(--canvas);border:1px solid var(--hairline);border-radius:24px;box-shadow:var(--shadow-1)}
-    .masthead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid var(--hairline);padding:0 0 24px;margin-bottom:24px}.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.17em;font-weight:800;color:var(--blue-600);text-transform:uppercase}.masthead h2{font-size:42px;letter-spacing:-.035em;line-height:1.08;margin:14px 0 0}.masthead .lead{max-width:680px;margin:14px 0 0;color:var(--slate);font-size:16px;line-height:1.65}.brandmark{text-align:right;flex-shrink:0}.brandmark b{font-family:var(--font-mono);letter-spacing:.18em}.brandmark span{display:block;margin-top:8px;font-size:13px;color:var(--steel);font-weight:700}.pill{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--blue-200);background:var(--blue-50);color:var(--blue-700);font-size:12px;font-weight:800}.pill.dark{border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff}.pill.warn{border-color:#fed7aa;background:var(--warn-bg);color:#9a3412}.pill.danger{border-color:#fecaca;background:var(--danger-bg);color:#991b1b}.pill.success{border-color:#a7f3d0;background:var(--success-bg);color:#065f46}.pill.gray{border-color:var(--hairline);background:var(--surface-soft);color:var(--slate)}
-    .daily{overflow:hidden;margin-bottom:22px}.daily-hero{position:relative;background:var(--ink);color:#fff;padding:34px 38px;overflow:hidden}.daily-hero:after{content:"";position:absolute;right:-90px;top:-120px;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.38),rgba(37,99,235,0) 58%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(147,197,253,.08) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(147,197,253,.08) 31px 32px);pointer-events:none}.daily-row{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;position:relative;z-index:1}.daily h3{font-size:32px;line-height:1.2;letter-spacing:-.025em;margin:14px 0 0}.daily h3 em{font-style:normal;color:var(--blue-300)}.daily .sub{margin:10px 0 0;color:rgba(255,255,255,.72);line-height:1.65}.start-btn{border:0;border-radius:999px;background:var(--blue-500);color:#fff;height:54px;padding:0 26px;font-weight:900;font-size:16px;box-shadow:var(--shadow-blue);display:inline-flex;align-items:center;gap:12px}.start-btn:hover{background:var(--blue-400)}.daily-cta{text-align:right}.daily-cta small{display:block;margin-top:10px;color:rgba(255,255,255,.62);font-family:var(--font-mono);font-size:12px}.task-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px}.task{padding:18px;border:1px solid var(--hairline);background:var(--surface-soft);border-radius:18px}.task .top{display:flex;justify-content:space-between;gap:10px;align-items:center}.task h4{margin:12px 0 8px;font-size:17px;line-height:1.32}.task p{margin:0;color:var(--slate);font-size:13px;line-height:1.55}.task strong{font-size:24px;letter-spacing:-.02em}.section{margin-top:22px}.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 12px}.section-title h3{margin:0;font-size:21px;letter-spacing:-.02em}.section-title small{font-family:var(--font-mono);color:var(--steel);font-weight:700}.rec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.rec-card{position:relative;padding:20px;border:1px solid var(--hairline);border-radius:20px;background:var(--canvas);box-shadow:var(--shadow-1);display:grid;grid-template-columns:1fr auto;gap:16px}.rec-card.featured{border-color:var(--blue-200);background:linear-gradient(180deg,#fff,#f8fbff)}.rec-card.locked{opacity:.68}.rec-card h4{margin:8px 0 8px;font-size:18px;line-height:1.35}.rec-card p{margin:0;color:var(--slate);font-size:13.5px;line-height:1.55}.meta{display:flex;gap:8px;flex-wrap:wrap}.rec-actions{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:8px}.outline-btn,.ghost-btn,.primary-btn{border-radius:999px;height:42px;padding:0 17px;font-weight:900;border:1px solid var(--hairline);background:#fff;color:var(--ink)}.primary-btn{border-color:var(--blue-500);background:var(--blue-500);color:#fff;box-shadow:var(--shadow-blue)}.primary-btn:hover{background:var(--blue-400)}.outline-btn:hover{border-color:var(--blue-300);background:var(--blue-50)}.ghost-btn{background:transparent}.disabled-btn{height:42px;padding:0 17px;border-radius:999px;border:1px dashed var(--hairline);background:var(--surface-soft);color:var(--steel);font-weight:800;cursor:not-allowed}
-    .analysis-grid{display:grid;grid-template-columns:340px 1fr;gap:16px}.kpi-panel{padding:24px}.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.kpi{padding:16px;border:1px solid var(--hairline);border-radius:16px;background:var(--surface-soft)}.kpi label{display:block;color:var(--steel);font-size:12px;font-weight:900;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase}.kpi strong{display:block;margin-top:8px;font-size:34px;letter-spacing:-.04em}.weak-list{margin:20px 0 0;display:flex;flex-direction:column;gap:10px}.weak{padding:14px;border:1px solid var(--hairline);border-radius:16px;background:#fff}.weak b{display:block;font-size:14px}.weak span{display:block;margin-top:5px;color:var(--slate);font-size:13px;line-height:1.45}.radar-panel{padding:24px}.radar-wrap{border:1px solid var(--hairline);border-radius:18px;background:var(--surface-soft);padding:10px 8px}.legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:8px;color:var(--slate);font-size:13px}.legend span{display:flex;align-items:center;gap:8px}.swatch{width:24px;height:4px;border-radius:999px;display:inline-block}.dash{height:0;border-top:3px dashed var(--slate)}.radar-axis-label{font-size:13px;font-weight:800;fill:var(--charcoal)}.radar-axis-sub{font-size:11px;font-weight:700;fill:var(--steel)}.radar-grid-label{font-size:10px;fill:var(--stone);font-family:var(--font-mono)}.chapter-table{width:100%;border-collapse:collapse;border:1px solid var(--hairline);border-radius:18px;overflow:hidden;background:#fff}.chapter-table th{background:var(--surface-soft);font-size:12px;font-family:var(--font-mono);letter-spacing:.06em;text-align:left;color:var(--slate);padding:13px}.chapter-table td{border-top:1px solid var(--hairline);padding:13px;vertical-align:middle;font-size:14px}.bar{height:8px;border-radius:999px;background:var(--hairline);position:relative;overflow:hidden}.bar i{position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--c);border-radius:inherit}.score{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:center;font-family:var(--font-mono);font-weight:800}.notice{padding:16px 18px;border-radius:18px;border:1px solid var(--blue-200);background:var(--blue-50);color:var(--blue-700);line-height:1.6;font-size:14px}.notice b{color:var(--blue-700)}
-    .solver-shell{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}.solver-main,.solver-side{padding:26px}.solver-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;border-bottom:1px solid var(--hairline);padding-bottom:18px;margin-bottom:22px}.solver-head h2{margin:0;font-size:26px;letter-spacing:-.025em}.back-btn{border:0;background:transparent;color:var(--blue-600);font-weight:900;margin-bottom:10px;padding:0}.timer{font-family:var(--font-mono);font-size:24px;font-weight:900;color:var(--ink);text-align:right}.question-box{border:1px solid var(--hairline);border-radius:20px;background:var(--surface-soft);padding:26px;margin-bottom:18px}.problem-text{font-size:22px;line-height:1.7;letter-spacing:-.01em}.math{font-family:"Times New Roman",serif;font-size:1.06em}.frac{display:inline-grid;vertical-align:middle;text-align:center;line-height:1;grid-template-rows:auto auto;margin:0 1px}.frac span:first-child{border-bottom:1px solid currentColor;padding:0 3px 2px}.frac span:last-child{padding:2px 3px 0}.options{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}.opt{height:54px;border-radius:16px;border:1px solid var(--hairline);background:#fff;font-weight:900;font-size:18px;color:var(--ink)}.opt.selected{border-color:var(--blue-500);background:var(--blue-50);color:var(--blue-700)}.opt.correct{border-color:#34d399;background:var(--success-bg);color:#065f46}.opt.wrong{border-color:#fca5a5;background:var(--danger-bg);color:#991b1b}.scratch{border:1px solid var(--hairline);border-radius:20px;background:#fff;overflow:hidden}.scratch-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--hairline);background:var(--surface-soft)}.scratch-head b{font-size:14px}.scratch-head .tools{display:flex;gap:8px}.tool-btn{height:32px;border-radius:999px;border:1px solid var(--hairline);background:#fff;padding:0 12px;font-weight:800;color:var(--slate)}canvas#scratchpad{display:block;width:100%;height:260px;touch-action:none;background:linear-gradient(#fff,#fff),repeating-linear-gradient(0deg,transparent 0 31px,rgba(37,99,235,.055) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(37,99,235,.055) 31px 32px)}.solve-actions{display:flex;justify-content:space-between;gap:12px;margin-top:18px}.feedback{margin-top:18px;border-radius:20px;border:1px solid var(--hairline);background:#fff;padding:20px}.feedback.correct{border-color:#a7f3d0;background:var(--success-bg)}.feedback.wrong{border-color:#fecaca;background:var(--danger-bg)}.feedback h3{margin:0 0 10px;font-size:20px}.feedback p{margin:0;color:var(--charcoal);line-height:1.65}.explain{margin-top:14px;border-top:1px solid rgba(0,0,0,.08);padding-top:14px}.cause-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.cause-tags button{border:1px solid var(--hairline);background:#fff;border-radius:999px;height:34px;padding:0 12px;font-weight:800;color:var(--slate)}.side-card{border:1px solid var(--hairline);border-radius:18px;background:var(--surface-soft);padding:18px;margin-bottom:12px}.side-card h4{margin:0 0 12px;font-size:15px}.side-card dl{display:grid;grid-template-columns:92px 1fr;gap:8px;margin:0;font-size:13px}.side-card dt{color:var(--steel);font-weight:800}.side-card dd{margin:0;color:var(--ink-soft);font-weight:700}.queue-mini{display:flex;flex-direction:column;gap:8px}.mini{padding:12px;border-radius:14px;background:#fff;border:1px solid var(--hairline);font-size:13px}.mini b{display:block}.mini span{display:block;color:var(--steel);margin-top:4px}.result-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--hairline);border-radius:16px;background:#fff;padding:12px 14px;margin-top:8px}.result-row span{font-size:13px;color:var(--slate)}
-    .api-note{margin-top:22px;padding:20px;border-radius:20px;background:#0f172a;color:#dbeafe}.api-note h3{margin:0 0 10px}.api-note pre{margin:12px 0 0;white-space:pre-wrap;font-size:12px;line-height:1.55;color:#bfdbfe;font-family:var(--font-mono)}
-    @media(max-width:960px){.app{padding:24px 16px 60px}.topbar,.masthead,.daily-row{flex-direction:column;align-items:flex-start}.brandmark,.daily-cta{text-align:left}.user-tabs{width:100%;overflow:auto}.task-overview{grid-template-columns:1fr}.rec-grid,.analysis-grid,.solver-shell{grid-template-columns:1fr}.options{grid-template-columns:1fr}.solver-side{order:-1}.masthead h2{font-size:34px}.daily h3{font-size:28px}}
+    body[data-subject="english"]{
+      --theme:#e11d48; --theme-2:#fb7185; --theme-50:#fff1f2; --theme-100:#ffe4e6; --theme-200:#fecdd3; --theme-700:#9f1239;
+      --shadow-theme:0 18px 45px rgba(225,29,72,.18);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}.hidden{display:none!important}.mono{font-family:var(--font-mono)}
+    button,input,textarea{font-family:inherit} button{cursor:pointer}.app{max-width:1180px;margin:0 auto;padding:30px 28px 90px;transition:opacity .28s var(--ease),transform .28s var(--ease)}.app.switching{opacity:.25;transform:translateY(8px)}
+
+    /* Topbar */
+    .topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:14px;justify-self:center}.logo{width:40px;height:40px;border-radius:14px;background:var(--ink);position:relative;box-shadow:var(--shadow-1)}.logo:before{content:"";position:absolute;inset:9px;border:2px solid var(--theme-2);border-radius:10px;transform:rotate(45deg);transition:border-color .28s var(--ease)}.brand h1{font-size:18px;margin:0;font-family:var(--font-mono);letter-spacing:.18em}.brand small{display:block;color:var(--steel);font-weight:800;letter-spacing:.08em;margin-top:4px}.subject-toggle{justify-self:start;position:relative;display:flex;gap:6px;padding:6px;border:1px solid var(--hairline);border-radius:999px;background:var(--canvas);box-shadow:var(--shadow-1)}.subject-toggle:before{content:"";position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 6px);border-radius:999px;background:var(--blue-500);box-shadow:0 12px 30px rgba(37,99,235,.20);transition:transform .34s var(--ease),background .34s var(--ease),box-shadow .34s var(--ease)}body[data-subject="english"] .subject-toggle:before{transform:translateX(calc(100% + 6px));background:var(--red-500);box-shadow:0 12px 30px rgba(225,29,72,.18)}.subject-toggle button{position:relative;z-index:1;border:0;background:transparent;border-radius:999px;height:38px;padding:0 16px;font-weight:900;color:var(--slate);letter-spacing:-.01em}.subject-toggle button.active{color:#fff}.auth{justify-self:end;display:flex;align-items:center;gap:10px;position:relative}.user-chip{height:42px;border-radius:999px;border:1px solid var(--hairline);background:var(--canvas);display:inline-flex;align-items:center;gap:10px;padding:0 14px;font-weight:900;box-shadow:var(--shadow-1)}.user-chip .avatar{width:26px;height:26px;border-radius:50%;background:var(--theme);color:#fff;display:grid;place-items:center;font-family:var(--font-mono);font-size:12px}.auth-btn{height:42px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:0 17px;font-weight:900}.auth-btn.off{border-color:var(--hairline);background:#fff;color:var(--ink)}.user-menu{position:absolute;right:0;top:52px;width:275px;background:#fff;border:1px solid var(--hairline);box-shadow:var(--shadow-2);border-radius:20px;padding:12px;z-index:20;display:none}.auth.open .user-menu{display:block}.user-menu h4{margin:4px 8px 10px;font-size:13px;color:var(--steel);font-family:var(--font-mono);letter-spacing:.08em}.user-option{width:100%;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--hairline);background:var(--surface-soft);border-radius:14px;padding:13px 14px;margin-top:8px;text-align:left}.user-option.active{border-color:var(--theme-200);background:var(--theme-50)}.user-option b{display:block;color:var(--ink)}.user-option span{display:block;margin-top:4px;color:var(--steel);font-size:12px;font-weight:800}.user-option em{font-style:normal;color:var(--theme);font-weight:900}.panel{background:var(--canvas);border:1px solid var(--hairline);border-radius:24px;box-shadow:var(--shadow-1)}
+
+    /* Masthead */
+    .masthead{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px;align-items:stretch;border-bottom:1px solid var(--hairline);padding:0 0 24px;margin-bottom:24px}.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.17em;font-weight:900;color:var(--theme);text-transform:uppercase}.masthead h2{font-size:42px;letter-spacing:-.04em;line-height:1.08;margin:14px 0 0}.masthead h2 .accent{color:var(--theme)}.masthead .lead{max-width:720px;margin:14px 0 0;color:var(--slate);font-size:16px;line-height:1.65}.hero-line{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:11px 14px;border:1px solid var(--theme-200);background:var(--theme-50);color:var(--theme-700);border-radius:999px;font-weight:900}.schedule-card{padding:22px;border-radius:24px;background:linear-gradient(180deg,#fff,var(--surface-soft));border:1px solid var(--hairline);box-shadow:var(--shadow-1)}.schedule-card h3{margin:0 0 14px;font-size:18px;letter-spacing:-.02em}.schedule-item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--hairline)}.schedule-item:first-of-type{border-top:0}.schedule-item b{display:block;font-size:14px}.schedule-item span{display:block;color:var(--steel);font-size:12px;margin-top:4px;font-family:var(--font-mono);letter-spacing:.02em}.schedule-item strong{font-size:22px;font-family:var(--font-mono);color:var(--theme)}
+
+    /* Common UI */
+    .pill{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--theme-200);background:var(--theme-50);color:var(--theme-700);font-size:12px;font-weight:900}.pill.dark{border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff}.pill.warn{border-color:#fed7aa;background:var(--warn-bg);color:#9a3412}.pill.danger{border-color:#fecaca;background:var(--danger-bg);color:#991b1b}.pill.success{border-color:#a7f3d0;background:var(--success-bg);color:#065f46}.pill.gray{border-color:var(--hairline);background:var(--surface-soft);color:var(--slate)}.pill.red{border-color:var(--red-200);background:var(--red-50);color:var(--red-700)}.section{margin-top:22px}.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 12px}.section-title h3{margin:0;font-size:21px;letter-spacing:-.02em}.section-title small{font-family:var(--font-mono);color:var(--steel);font-weight:800}.notice{padding:16px 18px;border-radius:18px;border:1px solid var(--theme-200);background:var(--theme-50);color:var(--theme-700);line-height:1.6;font-size:14px}.notice b{color:var(--theme-700)}
+
+    /* Daily */
+    .daily{overflow:hidden;margin-bottom:22px}.daily-hero{position:relative;background:var(--ink);color:#fff;padding:34px 38px;overflow:hidden}.daily-hero:after{content:"";position:absolute;right:-90px;top:-120px;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.38),rgba(37,99,235,0) 58%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.08) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(255,255,255,.08) 31px 32px);pointer-events:none}body[data-subject="english"] .daily-hero:after{background:radial-gradient(circle,rgba(225,29,72,.34),rgba(225,29,72,0) 58%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.08) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(255,255,255,.08) 31px 32px)}.daily-row{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;position:relative;z-index:1}.daily h3{font-size:32px;line-height:1.2;letter-spacing:-.025em;margin:14px 0 0}.daily h3 em{font-style:normal;color:var(--theme-2)}.daily .sub{margin:10px 0 0;color:rgba(255,255,255,.72);line-height:1.65;max-width:650px}.start-btn{border:0;border-radius:999px;background:var(--theme);color:#fff;height:54px;padding:0 26px;font-weight:900;font-size:16px;box-shadow:var(--shadow-theme);display:inline-flex;align-items:center;gap:12px;transition:transform .16s var(--ease),filter .16s var(--ease)}.start-btn:hover{filter:brightness(1.05)}.start-btn:active{transform:scale(.98)}.daily-cta{text-align:right;flex-shrink:0}.daily-cta small{display:block;margin-top:10px;color:rgba(255,255,255,.62);font-family:var(--font-mono);font-size:12px}.task-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px}.task{padding:18px;border:1px solid var(--hairline);background:var(--surface-soft);border-radius:18px}.task .top{display:flex;justify-content:space-between;gap:10px;align-items:center}.task h4{margin:12px 0 8px;font-size:17px;line-height:1.32}.task p{margin:0;color:var(--slate);font-size:13px;line-height:1.55}.task strong{font-size:24px;letter-spacing:-.02em}.rec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.rec-card{position:relative;padding:20px;border:1px solid var(--hairline);border-radius:20px;background:var(--canvas);box-shadow:var(--shadow-1);display:grid;grid-template-columns:1fr auto;gap:16px}.rec-card.featured{border-color:var(--theme-200);background:linear-gradient(180deg,#fff,var(--theme-50))}.rec-card.locked{opacity:.68}.rec-card h4{margin:8px 0 8px;font-size:18px;line-height:1.35}.rec-card p{margin:0;color:var(--slate);font-size:13.5px;line-height:1.55}.meta{display:flex;gap:8px;flex-wrap:wrap}.rec-actions{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:8px}.outline-btn,.ghost-btn,.primary-btn{border-radius:999px;height:42px;padding:0 17px;font-weight:900;border:1px solid var(--hairline);background:#fff;color:var(--ink)}.primary-btn{border-color:var(--theme);background:var(--theme);color:#fff;box-shadow:var(--shadow-theme)}.primary-btn:hover{filter:brightness(1.05)}.outline-btn:hover{border-color:var(--theme-200);background:var(--theme-50)}.ghost-btn{background:transparent}.disabled-btn{height:42px;padding:0 17px;border-radius:999px;border:1px dashed var(--hairline);background:var(--surface-soft);color:var(--steel);font-weight:800;cursor:not-allowed}
+
+    /* Analysis */
+    .analysis-grid{display:grid;grid-template-columns:360px 1fr;gap:16px}.kpi-panel,.chart-panel{padding:24px}.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.kpi{padding:16px;border:1px solid var(--hairline);border-radius:16px;background:var(--surface-soft)}.kpi label{display:block;color:var(--steel);font-size:12px;font-weight:900;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase}.kpi strong{display:block;margin-top:8px;font-size:34px;letter-spacing:-.04em}.weak-list{margin:20px 0 0;display:flex;flex-direction:column;gap:10px}.weak{padding:14px;border:1px solid var(--hairline);border-radius:16px;background:#fff}.weak b{display:block;font-size:14px}.weak span{display:block;margin-top:5px;color:var(--slate);font-size:13px;line-height:1.45}.radar-wrap,.line-wrap{border:1px solid var(--hairline);border-radius:18px;background:var(--surface-soft);padding:10px 8px}.legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:8px;color:var(--slate);font-size:13px}.legend span{display:flex;align-items:center;gap:8px}.swatch{width:24px;height:4px;border-radius:999px;display:inline-block;background:var(--theme)}.dash{height:0;border-top:3px dashed var(--slate);background:transparent}.radar-axis-label{font-size:13px;font-weight:900;fill:var(--charcoal)}.radar-axis-sub{font-size:11px;font-weight:800;fill:var(--steel)}.radar-grid-label{font-size:10px;fill:var(--stone);font-family:var(--font-mono)}.chart-axis{stroke:#d8dee9;stroke-width:1}.chart-grid{stroke:#e7ebf2;stroke-width:1}.chart-label{font-family:var(--font-mono);font-size:11px;fill:var(--steel)}.chart-score-label{font-family:var(--font-mono);font-size:12px;fill:var(--ink);font-weight:900}.grade-band{fill:var(--theme);opacity:.06}.grade-line{stroke:var(--theme);stroke-width:3;fill:none}.grade-dot{fill:#fff;stroke:var(--theme);stroke-width:3}.abs-grade{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}.grade-pill{height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;border:1px solid var(--hairline);font-size:12px;font-weight:900;color:var(--slate);background:#fff}.grade-pill.active{border-color:var(--theme-200);background:var(--theme-50);color:var(--theme-700)}.chapter-table{width:100%;border-collapse:collapse;border:1px solid var(--hairline);border-radius:18px;overflow:hidden;background:#fff}.chapter-table th{background:var(--surface-soft);font-size:12px;font-family:var(--font-mono);letter-spacing:.06em;text-align:left;color:var(--slate);padding:13px}.chapter-table td{border-top:1px solid var(--hairline);padding:13px;vertical-align:middle;font-size:14px}.bar{height:8px;border-radius:999px;background:var(--hairline);position:relative;overflow:hidden}.bar i{position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--c);border-radius:inherit}.score{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:center;font-family:var(--font-mono);font-weight:900}
+
+    /* Solver */
+    .solver-shell{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}.solver-main,.solver-side{padding:26px}.solver-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;border-bottom:1px solid var(--hairline);padding-bottom:18px;margin-bottom:22px}.solver-head h2{margin:0;font-size:26px;letter-spacing:-.025em}.back-btn{border:0;background:transparent;color:var(--theme);font-weight:900;margin-bottom:10px;padding:0}.timer{font-family:var(--font-mono);font-size:24px;font-weight:900;color:var(--ink);text-align:right}.question-box{border:1px solid var(--hairline);border-radius:20px;background:var(--surface-soft);padding:26px;margin-bottom:18px}.problem-text{font-size:22px;line-height:1.7;letter-spacing:-.01em}.math{font-family:"Times New Roman",serif;font-size:1.06em}.frac{display:inline-grid;vertical-align:middle;text-align:center;line-height:1;grid-template-rows:auto auto;margin:0 1px}.frac span:first-child{border-bottom:1px solid currentColor;padding:0 3px 2px}.frac span:last-child{padding:2px 3px 0}.options{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}.opt{min-height:54px;border-radius:16px;border:1px solid var(--hairline);background:#fff;font-weight:900;font-size:17px;color:var(--ink);padding:8px 10px;text-align:left;line-height:1.45}.math-options .opt{text-align:center;font-size:18px}.english-options{grid-template-columns:1fr;gap:12px}.english-options .opt{display:flex;align-items:flex-start;gap:14px;min-height:64px;padding:16px 18px;border-radius:18px;font-size:16px;line-height:1.55;text-align:left}.english-options .opt-num{flex:0 0 34px;width:34px;display:inline-flex;align-items:flex-start;justify-content:center;color:var(--ink);font-family:var(--font-sans);font-size:22px;font-weight:900;line-height:1.2;padding-top:1px}.english-options .opt-text{flex:1;min-width:0}.english-options .opt.selected .opt-num{color:var(--theme)}.opt.selected{border-color:var(--theme);background:var(--theme-50);color:var(--theme-700)}.opt.correct{border-color:#34d399;background:var(--success-bg);color:#065f46}.opt.wrong{border-color:#fca5a5;background:var(--danger-bg);color:#991b1b}.scratch{border:1px solid var(--hairline);border-radius:20px;background:#fff;overflow:hidden}.scratch-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--hairline);background:var(--surface-soft)}.scratch-head b{font-size:14px}.scratch-head .tools{display:flex;gap:8px}.tool-btn{height:32px;border-radius:999px;border:1px solid var(--hairline);background:#fff;padding:0 12px;font-weight:800;color:var(--slate)}canvas#scratchpad{display:block;width:100%;height:280px;touch-action:none}.passage-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 14px;border:1px solid var(--hairline);border-radius:16px;background:#fff;margin:0 0 14px}.passage-toolbar b{font-size:13px;margin-right:4px}.passage{border:1px solid var(--hairline);border-radius:18px;background:#fff;padding:22px 24px;line-height:1.9;font-size:17px;color:var(--ink-soft);outline:0;min-height:230px}.passage:focus{border-color:var(--red-300);box-shadow:0 0 0 4px rgba(225,29,72,.08)}.passage mark{background:#fff3a3;border-radius:4px;padding:0 2px}.inline-note{display:inline-flex;align-items:center;min-width:58px;margin:0 3px;padding:2px 8px;border-radius:999px;background:#ffe4e6;color:#9f1239;border:1px solid #fecdd3;font-size:13px;font-weight:900}.solve-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.side-card{border:1px solid var(--hairline);border-radius:18px;background:var(--surface-soft);padding:18px;margin-bottom:12px}.side-card h4{margin:0 0 12px;font-size:15px}.side-card p{margin:0;color:var(--slate);font-size:13.5px;line-height:1.6}.side-card dl{display:grid;grid-template-columns:80px 1fr;gap:8px 10px;margin:0}.side-card dt{font-size:12px;color:var(--steel);font-weight:900}.side-card dd{margin:0;font-size:13px;font-weight:800}.mini{padding:10px 0;border-top:1px solid var(--hairline)}.mini:first-child{border-top:0}.mini b{display:block;font-size:13px}.mini span{display:block;margin-top:4px;color:var(--steel);font-size:12px}.feedback{margin-top:18px;border-radius:20px;padding:20px;border:1px solid var(--hairline);background:#fff}.feedback.correct{border-color:#a7f3d0;background:var(--success-bg)}.feedback.wrong{border-color:#fecaca;background:var(--danger-bg)}.feedback h3{margin:0 0 8px}.explain{padding:14px;border-radius:14px;background:#fff;border:1px solid var(--hairline);line-height:1.7;margin-top:12px;color:var(--charcoal)}.cause-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.cause-tags button{border:1px solid var(--hairline);background:#fff;border-radius:999px;height:34px;padding:0 12px;font-weight:900;color:var(--charcoal)}.api-note{margin-top:22px;background:#09111f;color:#e5eefc;border-radius:24px;padding:22px;border:1px solid rgba(255,255,255,.08)}.api-note h3{margin:0 0 10px}.api-note pre{white-space:pre-wrap;background:#050a13;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px;color:#bfdbfe;line-height:1.5;font-size:12px;overflow:auto}.logout-screen{padding:64px 30px;text-align:center}.logout-screen h2{font-size:34px;margin:0 0 12px;letter-spacing:-.03em}.logout-screen p{color:var(--slate);margin:0 0 24px}.login-card{max-width:520px;margin:40px auto 0;padding:28px;border-radius:24px;background:#fff;border:1px solid var(--hairline);box-shadow:var(--shadow-1)}
+    @media(max-width:900px){.app{padding:22px 18px 70px}.topbar{grid-template-columns:1fr;justify-items:stretch}.brand{justify-self:start}.auth{justify-self:start}.masthead{grid-template-columns:1fr}.daily-row,.solver-head{flex-direction:column;align-items:flex-start}.daily-cta{text-align:left}.task-overview,.rec-grid,.analysis-grid,.solver-shell{grid-template-columns:1fr}.options{grid-template-columns:1fr}.math-options{grid-template-columns:repeat(5,1fr)}.kpi-grid{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
-<body>
+<body data-subject="math">
   <div class="app" id="app"></div>
   <script>
-    const TODAY = (()=>{ const d=new Date(); const days=["일","월","화","수","목","금","토"]; return `${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")} (${days[d.getDay()]})`; })();
+    const BASE_DATE = new Date('2026-06-02T00:00:00+09:00');
+    const TODAY_LABEL = '06.02 (화)';
+    const SCHEDULES = [
+      {name:'수능', date:'2026-11-19', label:'2026.11.19'},
+      {name:'6월 모의고사', date:'2026-06-04', label:'2026.06.04'},
+      {name:'9월 모의고사', date:'2026-09-02', label:'2026.09.02'}
+    ];
 
     const PROBLEM_BANK = {
       "P26008-0008": {
-        id:"P26008-0008",
-        pcode:"26008-0008",
-        subject:"수학I",
-        chapter:"지수함수와 로그함수",
-        unit:"지수와 로그",
-        unitCode:"2015_common_1_1_1",
-        concept:"로그의 밑의 변환",
-        difficulty:"basic",
-        difficultyLabel:"기본",
-        type:"multiple_choice",
-        answer:3,
-        answerIndex:2,
+        id:"P26008-0008", pcode:"26008-0008", subjectType:"math", subject:"수학I", chapter:"지수함수와 로그함수", unit:"지수와 로그", concept:"로그의 밑의 변환", difficultyLabel:"기본", type:"multiple_choice", answerIndex:2,
         estimatedSeconds:{user1:45,user2:95},
         statement:`<span class="math">(log<sub>2</sub>42 − log<sub>2</sub>14)(log<sub>3</sub><span class="frac"><span>4</span><span>5</span></span> + 2log<sub>9</sub>10)</span>의 값은?`,
-        rawLatex:`$\\left(\\log_{2}42-\\log_{2}14\\right)\\left(\\log_{3}\\frac{4}{5}+2\\log_{9}10\\right)$의 값은?`,
         options:["① 1","② 2","③ 3","④ 4","⑤ 5"],
         explanation:`<p><span class="math">log<sub>2</sub>42 − log<sub>2</sub>14 = log<sub>2</sub>3</span>입니다.</p><p>또한 <span class="math">2log<sub>9</sub>10 = 2 × ½log<sub>3</sub>10 = log<sub>3</sub>10</span>입니다.</p><p>따라서 <span class="math">log<sub>2</sub>3(log<sub>3</sub><span class="frac"><span>4</span><span>5</span></span> + log<sub>3</sub>10) = log<sub>2</sub>3 · log<sub>3</sub>8 = log<sub>2</sub>3 · 3log<sub>3</sub>2 = 3</span>입니다.</p>`,
-        metaReason:{
-          user1:"안정권 챕터지만, 공통 영역 감각 유지와 풀이 속도 점검을 위해 1문항만 배정했습니다.",
-          user2:"수학I 지수·로그 챕터의 숙련도와 중상난도 대응력이 모두 낮아 기본 문항으로 먼저 회복합니다."
-        }
+        metaReason:{user1:"안정권 챕터지만, 공통 영역 감각 유지와 풀이 속도 점검을 위해 1문항만 배정했습니다.", user2:"수학I 지수·로그 챕터의 숙련도와 중상난도 대응력이 모두 낮아 기본 문항으로 먼저 회복합니다."}
+      },
+      "NewLearn-S00-Q09": {
+        id:"NewLearn-S00-Q09", pcode:"NewLearn-S00-Q09", sourcePcode:"NewLearn-S01-Q12", subjectType:"english", subject:"영어", chapter:"독해", unit:"대의파악", concept:"주제 찾기", difficultyLabel:"기본-중간", type:"main_topic", answerIndex:4,
+        instruction:"다음 글의 주제로 가장 적절한 것을 고르시오.",
+        passage:`With the rise of digital technology, many people now access information through online platforms rather than traditional printed media. While some argue that this shift has improved efficiency and accessibility, others express concern about the quality and reliability of online content. For example, social media allows users to share news instantly, but it also enables the rapid spread of misinformation. In contrast, established newspapers typically undergo editorial review before publishing, which helps ensure accuracy. Nevertheless, readers must develop critical thinking skills to evaluate sources effectively in the modern information landscape. Ultimately, the key challenge lies in balancing convenience with responsible consumption of digital information.`,
+        options:[
+          "① The role of editorial review in ensuring newspaper accuracy",
+          "② The rapid spread of misinformation through online platforms",
+          "③ The benefits of instant news sharing on social media",
+          "④ The decline of traditional printed media in the digital age",
+          "⑤ The importance of developing critical thinking for evaluating digital information"
+        ],
+        explanation:`<p>이 글은 디지털 시대에 정보 접근성이 높아진 반면 온라인 콘텐츠의 신뢰성과 품질 문제가 발생함을 설명하고, 독자가 출처를 비판적으로 평가하는 능력을 길러야 한다고 강조합니다.</p><p><b>readers must develop critical thinking skills to evaluate sources effectively</b>가 결정적 단서이므로 ⑤가 가장 적절합니다.</p><p>①은 신문 편집 절차라는 사례, ②는 허위정보 확산, ③은 소셜 미디어의 이점, ④는 전통 매체 쇠퇴라는 부수 내용에 치우쳐 있습니다.</p>`,
+        metaReason:{user1:"절대평가 1등급 진입을 위해 주제·요지 문항에서 선지 압축 시간을 줄이는 목적으로 배정했습니다.", user2:"대의파악 기본 유형에서 지문 핵심문장과 선지 대응 훈련이 필요해 필수 문항으로 배정했습니다."}
       }
     };
 
     const USERS = {
       user1:{
-        id:"user1", name:"user1", title:"미적분 선택자", level:"2등급권", course:"공통 14 unit + 미적분 7 unit", units:21, accent:"미적분", minutes:22, required:7, bonus:3,
-        lead:"안정권은 유지하고, 미적분 적분법·미분법의 심화 변형과 공통 고난도 시간 단축에 집중합니다.",
-        summary:"대부분 챕터는 안정권입니다. 다만 미적분 적분법과 수학I 수열에서 중상난도 대응력이 낮아 1등급 진입 병목이 남아 있습니다.",
-        tasks:[
-          {tag:"유지", status:"stable", target:"수학I 지수·로그", title:"공통 안정권 워밍업", reason:"쉬운 공통 문항 1개로 계산 감각과 로그 변환 속도를 점검합니다.", count:1},
-          {tag:"심화", status:"deep", target:"미적분 적분법 · 미분법", title:"심화 변형 집중", reason:"고난도 추론이 필요한 적분법·미분법 변형으로 2등급 병목을 공략합니다.", count:4},
-          {tag:"고난도", status:"warn", target:"수학I 수열 · 공통 고난도", title:"공통 고난도 추론", reason:"수열 추론 유형에서 실수 없는 풀이 흐름을 굳힙니다.", count:2},
-          {tag:"시간", status:"caution", target:"전일 오답 · 시간측정", title:"오답 복습 · 시간단축", reason:"틀린 문제를 다시 풀되, 목표 풀이시간을 함께 측정합니다.", count:3}
-        ],
-        recommendations:[
-          {id:"P26008-0008", slot:1, group:"필수", mode:"워밍업", available:true, reason:"공통 안정권 유지 · 목표 45초", minutes:1},
-          {id:"MOCK-CAL-INT-01", slot:2, group:"필수", mode:"심화", available:false, title:"미적분 적분법 · 정적분의 활용", reason:"심화 변형 슬롯 · AWS 문제은행 연동 예정", minutes:3},
-          {id:"MOCK-CAL-INT-02", slot:3, group:"필수", mode:"심화", available:false, title:"미적분 적분법 · 여러 가지 적분법", reason:"중상난도 대응력 보완", minutes:3},
-          {id:"MOCK-CAL-DER-01", slot:4, group:"필수", mode:"심화", available:false, title:"미적분 미분법 · 도함수의 활용", reason:"조건 해석 지연 감소", minutes:3},
-          {id:"MOCK-COM-SEQ-01", slot:5, group:"필수", mode:"고난도", available:false, title:"수학I 수열 · 귀납적 추론", reason:"공통 고난도 실수 방지", minutes:3},
-          {id:"MOCK-COM-SEQ-02", slot:6, group:"필수", mode:"고난도", available:false, title:"수학I 수열 · 수열의 합", reason:"풀이 흐름 안정화", minutes:3},
-          {id:"MOCK-REVIEW-01", slot:7, group:"필수", mode:"시간", available:false, title:"전일 오답 · 시간측정", reason:"목표 풀이시간 대비 초과 문항", minutes:2},
-          {id:"MOCK-CAL-INT-03", slot:8, group:"보너스", mode:"심화", available:false, title:"미적분 적분법 · 정적분의 활용", reason:"보너스 심화 변형", minutes:2},
-          {id:"MOCK-CAL-DER-02", slot:9, group:"보너스", mode:"심화", available:false, title:"미적분 미분법 · 여러 가지 미분법", reason:"보너스 조건 변형", minutes:1},
-          {id:"MOCK-REVIEW-02", slot:10, group:"보너스", mode:"복습", available:false, title:"오답 쌍둥이 · 시간단축", reason:"전일 오답 재출제 슬롯", minutes:1}
-        ],
-        labels:[["수I","지수·로그"],["수I","삼각함수"],["수I","수열"],["수II","극한·연속"],["수II","미분"],["수II","적분"],["미적","수열극한"],["미적","미분법"],["미적","적분법"]],
-        chapters:[
-          {subject:"수학I",chapter:"지수함수와 로그함수",units:["지수와 로그","지수함수와 로그함수"],mastery:82,difficulty:74,priority:"유지",status:"stable",weekly:"주 1~2문항"},
-          {subject:"수학I",chapter:"삼각함수",units:["삼각함수"],mastery:76,difficulty:66,priority:"유지",status:"stable",weekly:"주 1~2문항"},
-          {subject:"수학I",chapter:"수열",units:["등차수열과 등비수열","수열의 합","수학적 귀납법"],mastery:72,difficulty:60,priority:"심화",status:"deep",weekly:"주 2문항"},
-          {subject:"수학II",chapter:"함수의 극한과 연속",units:["함수의 극한","함수의 연속"],mastery:84,difficulty:76,priority:"유지",status:"stable",weekly:"주 1~2문항"},
-          {subject:"수학II",chapter:"미분",units:["미분계수","도함수","도함수의 활용"],mastery:79,difficulty:70,priority:"유지",status:"stable",weekly:"주 1~2문항"},
-          {subject:"수학II",chapter:"적분",units:["부정적분","정적분","정적분의 활용"],mastery:75,difficulty:65,priority:"유지",status:"stable",weekly:"주 1~2문항"},
-          {subject:"미적분",chapter:"수열의 극한",units:["수열의 극한","급수"],mastery:80,difficulty:69,priority:"유지",status:"stable",weekly:"주 1~2문항"},
-          {subject:"미적분",chapter:"미분법",units:["여러가지 함수의 미분","여러 가지 미분법","도함수의 활용"],mastery:74,difficulty:63,priority:"심화",status:"deep",weekly:"주 2문항"},
-          {subject:"미적분",chapter:"적분법",units:["여러 가지 적분법","정적분의 활용"],mastery:68,difficulty:58,priority:"보완",status:"caution",weekly:"주 2~3문항"}
-        ],
-        weakTop:[
-          {title:"미적분 적분법",desc:"숙련도 68 · 중상난도 대응력 58. 심화 변형 우선."},
-          {title:"수학I 수열",desc:"공통 고난도에서 시간 초과가 발생하는 구간."},
-          {title:"미적분 미분법",desc:"조건 해석과 도함수 활용 변형을 보완."}
-        ]
+        id:"user1", name:"user1", label:"미적 2등급", course:"미적분", units:21, level:"2등급권", avatar:"1",
+        math:{
+          reportTitle:"user1 수학 학습 리포트", headline:"안정적인 2등급 구간 유지", subline:"4점문항에서 정확도 상승과 시간단축 도전", accent:"미적분", minutes:22, required:7, bonus:3,
+          lead:"안정권은 유지하고, 미적분 적분법·미분법의 심화 변형과 공통 고난도 시간 단축에 집중합니다.",
+          summary:"대부분 챕터는 안정권입니다. 다만 미적분 적분법과 수학I 수열에서 중상난도 대응력이 낮아 1등급 진입 병목이 남아 있습니다.",
+          tasks:[
+            {tag:"유지", status:"stable", target:"수학I 지수·로그", title:"공통 안정권 워밍업", reason:"쉬운 공통 문항 1개로 계산 감각과 로그 변환 속도를 점검합니다.", count:1},
+            {tag:"심화", status:"deep", target:"미적분 적분법 · 미분법", title:"심화 변형 집중", reason:"고난도 추론이 필요한 적분법·미분법 변형으로 2등급 병목을 공략합니다.", count:4},
+            {tag:"고난도", status:"warn", target:"수학I 수열 · 공통 고난도", title:"공통 고난도 추론", reason:"수열 추론 유형에서 실수 없는 풀이 흐름을 굳힙니다.", count:2},
+            {tag:"시간", status:"caution", target:"전일 오답 · 시간측정", title:"오답 복습 · 시간단축", reason:"틀린 문제를 다시 풀되, 목표 풀이시간을 함께 측정합니다.", count:3}
+          ],
+          recommendations:[
+            {id:"P26008-0008", slot:1, group:"필수", mode:"워밍업", available:true, reason:"공통 안정권 유지 · 목표 45초", minutes:1},
+            {id:"MOCK-CAL-INT-01", slot:2, group:"필수", mode:"심화", available:false, title:"미적분 적분법 · 정적분의 활용", reason:"심화 변형 슬롯 · AWS 문제은행 연동 예정", minutes:3},
+            {id:"MOCK-CAL-INT-02", slot:3, group:"필수", mode:"심화", available:false, title:"미적분 적분법 · 여러 가지 적분법", reason:"중상난도 대응력 보완", minutes:3},
+            {id:"MOCK-CAL-DER-01", slot:4, group:"필수", mode:"심화", available:false, title:"미적분 미분법 · 도함수의 활용", reason:"조건 해석 지연 감소", minutes:3},
+            {id:"MOCK-COM-SEQ-01", slot:5, group:"필수", mode:"고난도", available:false, title:"수학I 수열 · 귀납적 추론", reason:"공통 고난도 실수 방지", minutes:3},
+            {id:"MOCK-COM-SEQ-02", slot:6, group:"필수", mode:"고난도", available:false, title:"수학I 수열 · 수열의 합", reason:"풀이 흐름 안정화", minutes:3},
+            {id:"MOCK-REVIEW-01", slot:7, group:"필수", mode:"시간", available:false, title:"전일 오답 · 시간측정", reason:"목표 풀이시간 대비 초과 문항", minutes:2},
+            {id:"MOCK-CAL-INT-03", slot:8, group:"보너스", mode:"심화", available:false, title:"미적분 적분법 · 정적분의 활용", reason:"보너스 심화 변형", minutes:2},
+            {id:"MOCK-CAL-DER-02", slot:9, group:"보너스", mode:"심화", available:false, title:"미적분 미분법 · 여러 가지 미분법", reason:"보너스 조건 변형", minutes:1},
+            {id:"MOCK-REVIEW-02", slot:10, group:"보너스", mode:"복습", available:false, title:"오답 쌍둥이 · 시간단축", reason:"전일 오답 재출제 슬롯", minutes:1}
+          ],
+          labels:[["수I","지수·로그"],["수I","삼각함수"],["수I","수열"],["수II","극한·연속"],["수II","미분"],["수II","적분"],["미적","수열극한"],["미적","미분법"],["미적","적분법"]],
+          chapters:[
+            {subject:"수학I",chapter:"지수함수와 로그함수",units:["지수와 로그","지수함수와 로그함수"],mastery:82,difficulty:74,priority:"유지",status:"stable",weekly:"주 1~2문항"},
+            {subject:"수학I",chapter:"삼각함수",units:["삼각함수"],mastery:76,difficulty:66,priority:"유지",status:"stable",weekly:"주 1~2문항"},
+            {subject:"수학I",chapter:"수열",units:["등차수열과 등비수열","수열의 합","수학적 귀납법"],mastery:72,difficulty:60,priority:"심화",status:"deep",weekly:"주 2문항"},
+            {subject:"수학II",chapter:"함수의 극한과 연속",units:["함수의 극한","함수의 연속"],mastery:84,difficulty:76,priority:"유지",status:"stable",weekly:"주 1~2문항"},
+            {subject:"수학II",chapter:"미분",units:["미분계수","도함수","도함수의 활용"],mastery:79,difficulty:70,priority:"유지",status:"stable",weekly:"주 1~2문항"},
+            {subject:"수학II",chapter:"적분",units:["부정적분","정적분","정적분의 활용"],mastery:75,difficulty:65,priority:"유지",status:"stable",weekly:"주 1~2문항"},
+            {subject:"미적분",chapter:"수열의 극한",units:["수열의 극한","급수"],mastery:80,difficulty:69,priority:"유지",status:"stable",weekly:"주 1~2문항"},
+            {subject:"미적분",chapter:"미분법",units:["여러가지 함수의 미분","여러 가지 미분법","도함수의 활용"],mastery:74,difficulty:63,priority:"심화",status:"deep",weekly:"주 2문항"},
+            {subject:"미적분",chapter:"적분법",units:["여러 가지 적분법","정적분의 활용"],mastery:68,difficulty:58,priority:"보완",status:"caution",weekly:"주 2~3문항"}
+          ],
+          weakTop:[
+            {title:"미적분 적분법",desc:"중상난도 대응력 58. 심화 변형에서 점수 손실."},
+            {title:"미적분 미분법",desc:"조건 해석 지연. 시간 단축 필요."},
+            {title:"수학I 수열",desc:"공통 고난도 추론에서 실수 관리 필요."}
+          ]
+        },
+        english:{
+          reportTitle:"user1 영어 학습 리포트", headline:"절대평가 2등급 안정권 진입", subline:"주제·요지 문항에서 선지 압축 시간단축 도전", level:"2등급권", expected:84, target:90, minutes:14, required:7, bonus:3,
+          lead:"예상점수는 80점대 중반입니다. 1등급 진입을 위해 대의파악 문항에서 근거문장 포착과 선지 압축 속도를 줄입니다.",
+          summary:"오늘은 주제 파악 1문항을 실제 연결하고, 빈칸·순서·삽입은 AWS 문제은행 슬롯으로 배정했습니다.",
+          tasks:[
+            {tag:"핵심", status:"stable", target:"대의파악 · 주제", title:"주제 문항 근거문장 포착", reason:"핵심문장과 정답 선지의 의미 대응을 빠르게 확인합니다.", count:1},
+            {tag:"심화", status:"warn", target:"빈칸 · 추론", title:"고난도 선지 압축", reason:"추상도가 높은 선지에서 오답 소거 시간을 줄입니다.", count:3},
+            {tag:"구조", status:"caution", target:"순서 · 삽입", title:"담화 구조 안정화", reason:"접속사와 지시어 단서를 기준으로 문장 위치를 판단합니다.", count:3},
+            {tag:"복습", status:"deep", target:"전일 오답", title:"오답 유형 반복", reason:"틀린 선지 패턴을 바꿔 다시 풉니다.", count:3}
+          ],
+          recommendations:[
+            {id:"NewLearn-S00-Q09", slot:1, group:"필수", mode:"주제", available:true, reason:"대의파악 기본 유형 · 목표 90초", minutes:2},
+            {id:"ENG-MOCK-BLANK-01", slot:2, group:"필수", mode:"빈칸", available:false, title:"빈칸 추론 · 핵심어 반복", reason:"1등급 진입 병목 슬롯", minutes:2},
+            {id:"ENG-MOCK-BLANK-02", slot:3, group:"필수", mode:"빈칸", available:false, title:"빈칸 추론 · 역접 구조", reason:"선지 압축 훈련", minutes:2},
+            {id:"ENG-MOCK-ORDER-01", slot:4, group:"필수", mode:"순서", available:false, title:"글의 순서 · 지시어", reason:"담화 구조 확인", minutes:2},
+            {id:"ENG-MOCK-INSERT-01", slot:5, group:"필수", mode:"삽입", available:false, title:"문장 삽입 · 연결어", reason:"접속사 단서 훈련", minutes:2},
+            {id:"ENG-MOCK-VOCAB-01", slot:6, group:"필수", mode:"어휘", available:false, title:"문맥상 어휘", reason:"빠른 선지 제거", minutes:1},
+            {id:"ENG-MOCK-GRAMMAR-01", slot:7, group:"필수", mode:"어법", available:false, title:"어법 · 수일치", reason:"실수 방지", minutes:1},
+            {id:"ENG-MOCK-REVIEW-01", slot:8, group:"보너스", mode:"복습", available:false, title:"전일 오답 선지 변형", reason:"오답 선지 패턴 반복", minutes:1},
+            {id:"ENG-MOCK-REVIEW-02", slot:9, group:"보너스", mode:"복습", available:false, title:"주제 문항 쌍둥이", reason:"동일 논지 구조", minutes:1},
+            {id:"ENG-MOCK-LONG-01", slot:10, group:"보너스", mode:"장문", available:false, title:"장문 독해 · 요약", reason:"보너스 고난도", minutes:1}
+          ],
+          scoreHistory:[
+            {date:"05.06",score:76},{date:"05.10",score:78},{date:"05.14",score:79},{date:"05.18",score:81},{date:"05.22",score:82},{date:"05.26",score:83},{date:"05.30",score:84},{date:"06.02",score:84}
+          ],
+          weakTop:[
+            {title:"빈칸 추론",desc:"선지 추상도 상승 시 오답 소거 시간 증가."},
+            {title:"순서·삽입",desc:"지시어와 연결어 단서 탐색이 느림."},
+            {title:"주제 문항",desc:"정답 근거는 찾지만 선지 압축 속도 개선 필요."}
+          ]
+        }
       },
       user2:{
-        id:"user2", name:"user2", title:"확률과 통계 선택자", level:"4등급권", course:"공통 14 unit + 확률과 통계 6 unit", units:20, accent:"확률과 통계", minutes:18, required:7, bonus:3,
-        lead:"공통 영역의 점수 손실이 커서 수학II 미분·적분과 수학I 수열, 지수·로그 기본기를 먼저 복구합니다.",
-        summary:"공통 영역의 적분·미분·수열이 전체 점수를 끌어내리고 있습니다. 확통 선택자라도 오늘은 공통 점수 방어 문항이 우선 배정됩니다.",
-        tasks:[
-          {tag:"최우선", status:"danger", target:"수학II 적분 · 미분 · 수열", title:"최우선 공통 약점 회복", reason:"선택과목보다 공통 영역 실점이 커서 기초 유형부터 다시 잡습니다.", count:4},
-          {tag:"보완", status:"caution", target:"수학I 지수·로그", title:"공통 기본기 보강", reason:"로그의 밑 변환처럼 짧은 개념 문항으로 계산 안정성을 회복합니다.", count:1},
-          {tag:"우선", status:"warn", target:"확률과 통계 · 확률 · 통계", title:"선택과목 기본기", reason:"조건부확률·통계적 추정 개념을 쉬운 문항으로 복구합니다.", count:3},
-          {tag:"복습", status:"deep", target:"전일 오답", title:"오답 쌍둥이 복습", reason:"어제 틀린 유형을 조건만 바꿔 다시 풉니다.", count:2}
-        ],
-        recommendations:[
-          {id:"P26008-0008", slot:1, group:"필수", mode:"기본", available:true, reason:"수학I 지수·로그 보완 · 목표 95초", minutes:2},
-          {id:"MOCK-COM-INT-01", slot:2, group:"필수", mode:"개념", available:false, title:"수학II 적분 · 부정적분", reason:"공통 최취약 개념 회복", minutes:2},
-          {id:"MOCK-COM-INT-02", slot:3, group:"필수", mode:"개념", available:false, title:"수학II 적분 · 정적분", reason:"기초 계산 안정화", minutes:2},
-          {id:"MOCK-COM-DER-01", slot:4, group:"필수", mode:"개념", available:false, title:"수학II 미분 · 도함수", reason:"미분 기본 공식 확인", minutes:2},
-          {id:"MOCK-COM-SEQ-01", slot:5, group:"필수", mode:"개념", available:false, title:"수학I 수열 · 등차/등비수열", reason:"반복 오답 단원 보완", minutes:2},
-          {id:"MOCK-STAT-PROB-01", slot:6, group:"필수", mode:"선택", available:false, title:"확통 확률 · 조건부확률", reason:"선택과목 기본기 회복", minutes:2},
-          {id:"MOCK-STAT-DIST-01", slot:7, group:"필수", mode:"선택", available:false, title:"확통 통계 · 확률분포", reason:"통계 기본 개념 확인", minutes:2},
-          {id:"MOCK-STAT-EST-01", slot:8, group:"보너스", mode:"선택", available:false, title:"확통 통계 · 통계적 추정", reason:"보너스 기본 유형", minutes:1},
-          {id:"MOCK-REVIEW-01", slot:9, group:"보너스", mode:"복습", available:false, title:"전일 오답 쌍둥이", reason:"어제 오답 조건 변형", minutes:1},
-          {id:"MOCK-REVIEW-02", slot:10, group:"보너스", mode:"복습", available:false, title:"전일 오답 쌍둥이", reason:"어제 오답 숫자 변형", minutes:1}
-        ],
-        labels:[["수I","지수·로그"],["수I","삼각함수"],["수I","수열"],["수II","극한·연속"],["수II","미분"],["수II","적분"],["확통","경우의 수"],["확통","확률"],["확통","통계"]],
-        chapters:[
-          {subject:"수학I",chapter:"지수함수와 로그함수",units:["지수와 로그","지수함수와 로그함수"],mastery:58,difficulty:46,priority:"보완",status:"caution",weekly:"주 2~3문항"},
-          {subject:"수학I",chapter:"삼각함수",units:["삼각함수"],mastery:46,difficulty:34,priority:"우선",status:"warn",weekly:"주 4~5문항"},
-          {subject:"수학I",chapter:"수열",units:["등차수열과 등비수열","수열의 합","수학적 귀납법"],mastery:37,difficulty:25,priority:"최우선",status:"danger",weekly:"주 6~8문항"},
-          {subject:"수학II",chapter:"함수의 극한과 연속",units:["함수의 극한","함수의 연속"],mastery:54,difficulty:43,priority:"우선",status:"warn",weekly:"주 4~5문항"},
-          {subject:"수학II",chapter:"미분",units:["미분계수","도함수","도함수의 활용"],mastery:39,difficulty:28,priority:"최우선",status:"danger",weekly:"주 6~8문항"},
-          {subject:"수학II",chapter:"적분",units:["부정적분","정적분","정적분의 활용"],mastery:34,difficulty:24,priority:"최우선",status:"danger",weekly:"주 6~8문항"},
-          {subject:"확률과통계",chapter:"경우의 수",units:["순열과 조합","이항정리"],mastery:57,difficulty:45,priority:"보완",status:"caution",weekly:"주 2~3문항"},
-          {subject:"확률과통계",chapter:"확률",units:["확률의 뜻과 활용","조건부확률"],mastery:43,difficulty:31,priority:"우선",status:"warn",weekly:"주 4~5문항"},
-          {subject:"확률과통계",chapter:"통계",units:["확률분포","통계적 추정"],mastery:48,difficulty:35,priority:"우선",status:"warn",weekly:"주 4~5문항"}
-        ],
-        weakTop:[
-          {title:"수학II 적분",desc:"숙련도 34 · 중상난도 대응력 24. 공통 최우선."},
-          {title:"수학II 미분",desc:"도함수 활용 기본 유형부터 복구 필요."},
-          {title:"수학I 수열",desc:"조건 해석과 규칙 발견에서 반복 오답."}
-        ]
+        id:"user2", name:"user2", label:"확통 4등급", course:"확률과 통계", units:20, level:"4등급권", avatar:"2",
+        math:{
+          reportTitle:"user2 수학 학습 리포트", headline:"4등급 구간 탈출을 위한 공통 점수 방어", subline:"기본 개념 회복과 오답 쌍둥이 반복", accent:"확률과 통계", minutes:18, required:7, bonus:3,
+          lead:"공통 영역의 점수 손실이 커서 수학II 미분·적분과 수학I 수열, 지수·로그 기본기를 먼저 복구합니다.",
+          summary:"공통 영역의 적분·미분·수열이 전체 점수를 끌어내리고 있습니다. 확통 선택자라도 오늘은 공통 점수 방어 문항이 우선 배정됩니다.",
+          tasks:[
+            {tag:"최우선", status:"danger", target:"수학II 적분 · 미분 · 수열", title:"최우선 공통 약점 회복", reason:"선택과목보다 공통 영역 실점이 커서 기초 유형부터 다시 잡습니다.", count:4},
+            {tag:"보완", status:"caution", target:"수학I 지수·로그", title:"공통 기본기 보강", reason:"로그의 밑 변환처럼 짧은 개념 문항으로 계산 안정성을 회복합니다.", count:1},
+            {tag:"우선", status:"warn", target:"확률과 통계 · 확률 · 통계", title:"선택과목 기본기", reason:"조건부확률·통계적 추정 개념을 쉬운 문항으로 복구합니다.", count:3},
+            {tag:"복습", status:"deep", target:"전일 오답", title:"오답 쌍둥이 복습", reason:"어제 틀린 유형을 조건만 바꿔 다시 풉니다.", count:2}
+          ],
+          recommendations:[
+            {id:"P26008-0008", slot:1, group:"필수", mode:"기본", available:true, reason:"수학I 지수·로그 보완 · 목표 95초", minutes:2},
+            {id:"MOCK-COM-INT-01", slot:2, group:"필수", mode:"개념", available:false, title:"수학II 적분 · 부정적분", reason:"공통 최취약 개념 회복", minutes:2},
+            {id:"MOCK-COM-INT-02", slot:3, group:"필수", mode:"개념", available:false, title:"수학II 적분 · 정적분", reason:"기초 계산 안정화", minutes:2},
+            {id:"MOCK-COM-DER-01", slot:4, group:"필수", mode:"개념", available:false, title:"수학II 미분 · 도함수", reason:"미분 기본 공식 확인", minutes:2},
+            {id:"MOCK-COM-SEQ-01", slot:5, group:"필수", mode:"개념", available:false, title:"수학I 수열 · 등차/등비수열", reason:"반복 오답 단원 보완", minutes:2},
+            {id:"MOCK-STAT-PROB-01", slot:6, group:"필수", mode:"선택", available:false, title:"확통 확률 · 조건부확률", reason:"선택과목 기본기 회복", minutes:2},
+            {id:"MOCK-STAT-DIST-01", slot:7, group:"필수", mode:"선택", available:false, title:"확통 통계 · 확률분포", reason:"통계 기본 개념 확인", minutes:2},
+            {id:"MOCK-STAT-EST-01", slot:8, group:"보너스", mode:"선택", available:false, title:"확통 통계 · 통계적 추정", reason:"보너스 기본 유형", minutes:1},
+            {id:"MOCK-REVIEW-01", slot:9, group:"보너스", mode:"복습", available:false, title:"전일 오답 쌍둥이", reason:"어제 오답 조건 변형", minutes:1},
+            {id:"MOCK-REVIEW-02", slot:10, group:"보너스", mode:"복습", available:false, title:"전일 오답 쌍둥이", reason:"어제 오답 숫자 변형", minutes:1}
+          ],
+          labels:[["수I","지수·로그"],["수I","삼각함수"],["수I","수열"],["수II","극한·연속"],["수II","미분"],["수II","적분"],["확통","경우의 수"],["확통","확률"],["확통","통계"]],
+          chapters:[
+            {subject:"수학I",chapter:"지수함수와 로그함수",units:["지수와 로그","지수함수와 로그함수"],mastery:58,difficulty:46,priority:"보완",status:"caution",weekly:"주 2~3문항"},
+            {subject:"수학I",chapter:"삼각함수",units:["삼각함수"],mastery:46,difficulty:34,priority:"우선",status:"warn",weekly:"주 4~5문항"},
+            {subject:"수학I",chapter:"수열",units:["등차수열과 등비수열","수열의 합","수학적 귀납법"],mastery:37,difficulty:25,priority:"최우선",status:"danger",weekly:"주 6~8문항"},
+            {subject:"수학II",chapter:"함수의 극한과 연속",units:["함수의 극한","함수의 연속"],mastery:54,difficulty:43,priority:"우선",status:"warn",weekly:"주 4~5문항"},
+            {subject:"수학II",chapter:"미분",units:["미분계수","도함수","도함수의 활용"],mastery:39,difficulty:28,priority:"최우선",status:"danger",weekly:"주 6~8문항"},
+            {subject:"수학II",chapter:"적분",units:["부정적분","정적분","정적분의 활용"],mastery:34,difficulty:24,priority:"최우선",status:"danger",weekly:"주 6~8문항"},
+            {subject:"확률과통계",chapter:"경우의 수",units:["순열과 조합","이항정리"],mastery:57,difficulty:45,priority:"보완",status:"caution",weekly:"주 2~3문항"},
+            {subject:"확률과통계",chapter:"확률",units:["확률의 뜻과 활용","조건부확률"],mastery:43,difficulty:31,priority:"우선",status:"warn",weekly:"주 4~5문항"},
+            {subject:"확률과통계",chapter:"통계",units:["확률분포","통계적 추정"],mastery:48,difficulty:35,priority:"우선",status:"warn",weekly:"주 4~5문항"}
+          ],
+          weakTop:[
+            {title:"수학II 적분",desc:"숙련도 34 · 중상난도 대응력 24. 공통 최우선."},
+            {title:"수학II 미분",desc:"도함수 활용 기본 유형부터 복구 필요."},
+            {title:"수학I 수열",desc:"조건 해석과 규칙 발견에서 반복 오답."}
+          ]
+        },
+        english:{
+          reportTitle:"user2 영어 학습 리포트", headline:"절대평가 4등급에서 3등급 진입", subline:"대의파악 정확도 상승과 기본 독해 루틴 회복", level:"4등급권", expected:68, target:70, minutes:13, required:7, bonus:3,
+          lead:"예상점수는 60점대 후반입니다. 3등급 컷인 70점 진입을 위해 주제·요지와 어휘 문항을 먼저 안정화합니다.",
+          summary:"오늘은 주제 찾기 실제 문항을 풀고, 어휘·문장삽입·순서 문항은 기초 슬롯으로 배정했습니다.",
+          tasks:[
+            {tag:"최우선", status:"danger", target:"대의파악 · 주제", title:"주제 문항 기본기", reason:"지문 핵심문장과 정답 선지를 직접 대응시킵니다.", count:2},
+            {tag:"기본", status:"warn", target:"어휘 · 어법", title:"독해 기본 재정비", reason:"문장 이해를 막는 어휘와 기본 어법을 짧게 복구합니다.", count:2},
+            {tag:"구조", status:"caution", target:"순서 · 삽입", title:"담화 구조 확인", reason:"연결어와 지시어를 기준으로 문장 위치를 판단합니다.", count:3},
+            {tag:"복습", status:"deep", target:"전일 오답", title:"오답 선지 반복", reason:"틀린 선지의 표현만 바꿔 다시 풉니다.", count:3}
+          ],
+          recommendations:[
+            {id:"NewLearn-S00-Q09", slot:1, group:"필수", mode:"주제", available:true, reason:"대의파악 기본 유형 · 목표 130초", minutes:3},
+            {id:"ENG-BASIC-TOPIC-02", slot:2, group:"필수", mode:"요지", available:false, title:"요지 파악 · 중심문장 찾기", reason:"3등급 진입 기본 슬롯", minutes:2},
+            {id:"ENG-BASIC-VOCAB-01", slot:3, group:"필수", mode:"어휘", available:false, title:"문맥상 어휘", reason:"핵심 어휘 확인", minutes:1},
+            {id:"ENG-BASIC-GRAMMAR-01", slot:4, group:"필수", mode:"어법", available:false, title:"어법 · 동사 구조", reason:"문장 이해 안정화", minutes:1},
+            {id:"ENG-BASIC-ORDER-01", slot:5, group:"필수", mode:"순서", available:false, title:"글의 순서 · 연결어", reason:"담화 단서 확인", minutes:2},
+            {id:"ENG-BASIC-INSERT-01", slot:6, group:"필수", mode:"삽입", available:false, title:"문장 삽입 · 지시어", reason:"기초 구조 훈련", minutes:2},
+            {id:"ENG-BASIC-DETAIL-01", slot:7, group:"필수", mode:"내용일치", available:false, title:"내용일치 · 정보 확인", reason:"확실한 점수 확보", minutes:1},
+            {id:"ENG-BASIC-REVIEW-01", slot:8, group:"보너스", mode:"복습", available:false, title:"주제 쌍둥이 문항", reason:"동일 논리 구조", minutes:1},
+            {id:"ENG-BASIC-REVIEW-02", slot:9, group:"보너스", mode:"복습", available:false, title:"어휘 쌍둥이 문항", reason:"오답 어휘 반복", minutes:1},
+            {id:"ENG-BASIC-SUMMARY-01", slot:10, group:"보너스", mode:"요약", available:false, title:"요약문 완성", reason:"보너스 기본 유형", minutes:1}
+          ],
+          scoreHistory:[
+            {date:"05.06",score:58},{date:"05.10",score:60},{date:"05.14",score:61},{date:"05.18",score:63},{date:"05.22",score:65},{date:"05.26",score:66},{date:"05.30",score:67},{date:"06.02",score:68}
+          ],
+          weakTop:[
+            {title:"대의파악",desc:"핵심문장과 선지 대응이 불안정."},
+            {title:"어휘",desc:"온라인·사회·과학 지문에서 추상 어휘 손실."},
+            {title:"순서·삽입",desc:"연결어와 지시어 단서를 놓침."}
+          ]
+        }
       }
     };
 
-    let state = { userId: localStorage.getItem("ns_current_user") || "user1", page:"dashboard", problemId:null, selected:null, submitted:false, startTime:null, elapsed:0 };
+    let state = {
+      userId: localStorage.getItem('ns_current_user_v2') || 'user1',
+      subject: localStorage.getItem('ns_subject_v2') || 'math',
+      loggedIn: localStorage.getItem('ns_logged_in_v2') !== 'false',
+      menuOpen:false, page:'dashboard', problemId:null, selected:null, submitted:false, startTime:null
+    };
     let timerHandle = null;
-    const app = document.getElementById("app");
+    const app = document.getElementById('app');
 
-    function tagClass(status){ return status === "danger" ? "danger" : status === "warn" ? "warn" : status === "caution" ? "warn" : status === "stable" ? "success" : "gray"; }
+    function currentUser(){ return USERS[state.userId]; }
+    function currentProfile(){ return USERS[state.userId][state.subject]; }
+    function subjectLabel(){ return state.subject === 'math' ? 'Mathematics' : 'English'; }
+    function subjectKor(){ return state.subject === 'math' ? '수학' : '영어'; }
     function avg(arr){ return Math.round(arr.reduce((a,b)=>a+b,0)/arr.length); }
-    function barColor(v){ if(v < 40) return "#dc2626"; if(v < 60) return "#ea580c"; if(v < 75) return "#ca8a04"; return "#047857"; }
-    function getResults(){ try{return JSON.parse(localStorage.getItem("ns_poc_results")||"{}")}catch(e){return{}} }
-    function saveResult(userId, problemId, payload){ const all=getResults(); all[`${userId}:${problemId}`]=payload; localStorage.setItem("ns_poc_results",JSON.stringify(all)); }
-    function getResult(userId, problemId){ return getResults()[`${userId}:${problemId}`]; }
-    function setUser(id){ state={...state,userId:id,page:"dashboard",problemId:null,selected:null,submitted:false}; localStorage.setItem("ns_current_user",id); render(); }
-    function openDashboard(){ state={...state,page:"dashboard",problemId:null,selected:null,submitted:false}; render(); }
-    function openProblem(problemId){ state={...state,page:"solve",problemId,selected:null,submitted:false,startTime:Date.now(),elapsed:0}; render(); }
-    function startFirstAvailable(){ const user=USERS[state.userId]; const item=user.recommendations.find(r=>r.available); if(item) openProblem(item.id); }
+    function tagClass(status){ return status === 'danger' ? 'danger' : status === 'warn' ? 'warn' : status === 'caution' ? 'warn' : status === 'stable' ? 'success' : status === 'deep' ? 'gray' : 'gray'; }
+    function barColor(v){ if(v < 40) return '#dc2626'; if(v < 60) return '#ea580c'; if(v < 75) return '#ca8a04'; return '#047857'; }
+    function absGrade(score){ if(score>=90) return 1; if(score>=80) return 2; if(score>=70) return 3; if(score>=60) return 4; if(score>=50) return 5; if(score>=40) return 6; if(score>=30) return 7; if(score>=20) return 8; return 9; }
+    function dday(dateStr){ const target = new Date(dateStr + 'T00:00:00+09:00'); const diff = Math.ceil((target - BASE_DATE)/(1000*60*60*24)); return diff === 0 ? 'D-DAY' : diff > 0 ? `D-${diff}` : `D+${Math.abs(diff)}`; }
+    function getResults(){ try{return JSON.parse(localStorage.getItem('ns_poc_results_v2')||'{}')}catch(e){return{}} }
+    function saveResult(userId, subject, problemId, payload){ const all=getResults(); all[`${userId}:${subject}:${problemId}`]=payload; localStorage.setItem('ns_poc_results_v2',JSON.stringify(all)); }
+    function getResult(userId, subject, problemId){ return getResults()[`${userId}:${subject}:${problemId}`]; }
+
+    function setSubject(subject){
+      if(state.subject === subject) return;
+      app.classList.add('switching');
+      setTimeout(()=>{ state.subject=subject; state.page='dashboard'; state.problemId=null; state.selected=null; localStorage.setItem('ns_subject_v2',subject); document.body.dataset.subject=subject; render(); app.classList.remove('switching'); }, 160);
+    }
+    function toggleLogin(){ state.loggedIn = !state.loggedIn; state.menuOpen=false; localStorage.setItem('ns_logged_in_v2', String(state.loggedIn)); if(!state.loggedIn){state.page='dashboard';} render(); }
+    function toggleUserMenu(){ if(!state.loggedIn) return; state.menuOpen=!state.menuOpen; render(); }
+    function setUser(id){ state.userId=id; state.menuOpen=false; state.page='dashboard'; state.problemId=null; localStorage.setItem('ns_current_user_v2',id); render(); }
+    function openDashboard(){ state.page='dashboard'; state.problemId=null; state.selected=null; render(); }
+    function openProblem(problemId){ state.page='solve'; state.problemId=problemId; state.selected=null; state.submitted=false; state.startTime=Date.now(); render(); }
+    function startFirstAvailable(){ const p=currentProfile(); const item=p.recommendations.find(r=>r.available); if(item) openProblem(item.id); }
+
+    window.setSubject=setSubject; window.toggleLogin=toggleLogin; window.toggleUserMenu=toggleUserMenu; window.setUser=setUser; window.openDashboard=openDashboard; window.openProblem=openProblem; window.startFirstAvailable=startFirstAvailable;
 
     function renderShell(inner){
+      const u=currentUser();
+      document.body.dataset.subject = state.subject;
       app.innerHTML = `
         <div class="topbar">
+          <div class="subject-toggle" role="tablist" aria-label="과목 전환">
+            <button type="button" class="${state.subject==='math'?'active':''}" onclick="setSubject('math')">Mathematics</button>
+            <button type="button" class="${state.subject==='english'?'active':''}" onclick="setSubject('english')">English</button>
+          </div>
           <div class="brand"><div class="logo"></div><div><h1>NEURONSOFT</h1><small>매일 10제 · POC LOCAL</small></div></div>
-          <div class="user-tabs">
-            <button type="button" class="${state.userId==='user1'?'active':''}" onclick="setUser('user1')">user1 · 미적 2등급</button>
-            <button type="button" class="${state.userId==='user2'?'active':''}" onclick="setUser('user2')">user2 · 확통 4등급</button>
+          <div class="auth ${state.menuOpen?'open':''}">
+            ${state.loggedIn ? `<button class="user-chip" type="button" onclick="toggleUserMenu()"><span class="avatar">${u.avatar}</span><span>${u.name} · ${u.label}</span></button><button class="auth-btn" type="button" onclick="toggleLogin()">로그아웃</button>` : `<button class="auth-btn off" type="button" onclick="toggleLogin()">로그인</button>`}
+            <div class="user-menu">
+              <h4>임시 POC 유저 선택</h4>
+              ${Object.values(USERS).map(x=>`<button type="button" class="user-option ${x.id===state.userId?'active':''}" onclick="setUser('${x.id}')"><span><b>${x.name} · ${x.label}</b><span>${x.id==='user1'?'미적분 선택자 · 2등급권':'확률과 통계 선택자 · 4등급권'}</span></span><em>${x.id===state.userId?'선택':'전환'}</em></button>`).join('')}
+            </div>
           </div>
         </div>
-        ${inner}`;
+        ${state.loggedIn ? inner : renderLoggedOut()}`;
+    }
+
+    function renderLoggedOut(){
+      return `<section class="panel logout-screen"><h2>로그인이 필요합니다.</h2><p>POC에서는 로그인 버튼을 누르면 임시 로컬 유저 세션이 활성화됩니다.</p><button class="primary-btn" onclick="toggleLogin()" type="button">임시 로그인</button><div class="login-card"><b>임시 유저</b><p style="margin:10px 0 0;color:var(--slate);line-height:1.6">로그인 후 오른쪽 위 유저 메뉴에서 user1 · 미적 2등급, user2 · 확통 4등급을 전환할 수 있습니다.</p></div></section>`;
+    }
+
+    function renderMasthead(p){
+      return `<header class="masthead">
+        <div>
+          <div class="eyebrow">NEURONSOFT 매일 10제 · ${TODAY_LABEL} · ${subjectLabel()}</div>
+          <h2><span class="accent">${currentUser().name}</span> ${subjectKor()} 학습 리포트</h2>
+          <p class="lead"><b>${p.headline}</b><br>${p.subline}</p>
+          <div class="hero-line">${p.lead}</div>
+        </div>
+        <aside class="schedule-card">
+          <h3>주요 일정</h3>
+          ${SCHEDULES.map(s=>`<div class="schedule-item"><div><b>${s.name}</b><span>${s.label} 기준</span></div><strong>${dday(s.date)}</strong></div>`).join('')}
+        </aside>
+      </header>`;
     }
 
     function renderDashboard(){
-      const u = USERS[state.userId];
-      const mastery = avg(u.chapters.map(c=>c.mastery));
-      const diff = avg(u.chapters.map(c=>c.difficulty));
-      const actualDone = getResult(u.id,"P26008-0008");
-      const resultText = actualDone ? (actualDone.correct ? "정답" : "오답") : "미풀이";
-      const recCards = u.recommendations.map(r=>renderRecCard(u,r)).join("");
+      const p=currentProfile();
+      const recCards = p.recommendations.map(r=>renderRecCard(r)).join('');
       renderShell(`
-        <header class="masthead">
-          <div>
-            <div class="eyebrow">NEURONSOFT 매일 10제 · ${TODAY}</div>
-            <h2><span style="color:var(--blue-600)">${u.accent}</span> 학습 리포트</h2>
-            <p class="lead">${u.lead} 오늘은 <b>필수 ${u.required}문항 + 보너스 ${u.bonus}문항</b>으로 배정했습니다.</p>
-          </div>
-          <div class="brandmark"><b>NEURONSOFT.</b><span>${u.accent} · ${u.units} unit · ${u.level}</span></div>
-        </header>
+        ${renderMasthead(p)}
         <main>
           <section class="panel daily">
             <div class="daily-hero">
               <div class="daily-row">
                 <div>
                   <div class="eyebrow">TODAY'S TASK · 오늘의 학습</div>
-                  <h3>오늘 필수 <em>${u.required}</em>문항 + 보너스 <em>${u.bonus}</em>문항</h3>
-                  <p class="sub">${u.summary}</p>
+                  <h3>오늘 필수 <em>${p.required}</em>문항 + 보너스 <em>${p.bonus}</em>문항</h3>
+                  <p class="sub">${p.summary}</p>
                 </div>
                 <div class="daily-cta">
                   <button class="start-btn" type="button" onclick="startFirstAvailable()">연결된 문항 풀기 <span>→</span></button>
-                  <small>예상 소요 <b>${u.minutes}</b>분 · 실제 연결 문항 1개</small>
+                  <small>예상 소요 <b>${p.minutes}</b>분 · 실제 연결 문항 1개</small>
                 </div>
               </div>
             </div>
             <div class="task-overview">
-              ${u.tasks.map(t=>`<article class="task"><div class="top"><span class="pill ${tagClass(t.status)}">${t.tag}</span><strong>${t.count}</strong></div><h4>${t.title}</h4><p><b>${t.target}</b><br>${t.reason}</p></article>`).join("")}
+              ${p.tasks.map(t=>`<article class="task"><div class="top"><span class="pill ${tagClass(t.status)}">${t.tag}</span><strong>${t.count}</strong></div><h4>${t.title}</h4><p><b>${t.target}</b><br>${t.reason}</p></article>`).join('')}
             </div>
           </section>
 
           <section class="section">
             <div class="section-title"><h3>추천 문항 큐</h3><small>필수 7 + 보너스 3 · 실제 문항 1개 연결</small></div>
-            <div class="notice"><b>임시 POC 구조:</b> 업로드된 문항 1개는 실제 풀이 페이지로 연결했고, 나머지는 AWS 문제은행 연동 전까지 추천 슬롯으로 표시합니다.</div>
+            <div class="notice"><b>임시 POC 구조:</b> 실제 연결 문항은 즉시 풀이 페이지로 이동합니다. 나머지 슬롯은 AWS 문제은행 연동 전까지 추천 슬롯으로 표시합니다.</div>
             <div style="height:14px"></div>
             <div class="rec-grid">${recCards}</div>
           </section>
 
-          <section class="section analysis-grid">
-            <div class="panel kpi-panel">
-              <div class="section-title"><h3>현황 요약</h3></div>
-              <div class="kpi-grid">
-                <div class="kpi"><label>개념 숙련도</label><strong>${mastery}</strong></div>
-                <div class="kpi"><label>중상난도 대응력</label><strong>${diff}</strong></div>
-                <div class="kpi"><label>오늘 필수</label><strong>${u.required}</strong></div>
-                <div class="kpi"><label>연결 문항</label><strong>${resultText}</strong></div>
-              </div>
-              <div class="weak-list">
-                ${u.weakTop.map((w,i)=>`<div class="weak"><b>${i+1}. ${w.title}</b><span>${w.desc}</span></div>`).join("")}
-              </div>
-            </div>
-            <div class="panel radar-panel">
-              <div class="section-title"><h3>${u.accent} 영역 진단</h3><small>${u.units} UNIT · 챕터 9각형 레이더</small></div>
-              <div class="radar-wrap"><svg class="radar" id="radar" viewBox="0 0 760 560" role="img" aria-label="챕터 레이더"></svg><div class="legend"><span><i class="swatch" style="background:var(--blue-500)"></i>챕터 숙련도</span><span><i class="swatch dash"></i>중상난도 대응력</span><span class="mono">0–100 내부 진단 점수</span></div></div>
-            </div>
-          </section>
-
-          <section class="section">
-            <div class="section-title"><h3>챕터별 상세</h3><small>unit · 숙련도 · 난도 대응력 · 주간 배정</small></div>
-            ${renderChapterTable(u)}
-          </section>
+          ${state.subject==='math' ? renderMathAnalysis() : renderEnglishAnalysis()}
 
           <section class="api-note">
             <h3>AWS 전환 메모</h3>
             <p style="margin:0;color:#bfdbfe;line-height:1.65">현재 파일은 프론트 단일 HTML입니다. 최종본에서는 아래 데이터 객체를 API 응답으로 분리하면 됩니다.</p>
-            <pre>GET /users/{userId}/daily-recommendations
-GET /problems/{problemId}
-POST /attempts { userId, problemId, answer, elapsedSec, scratchpadUrl, wrongReason }</pre>
+            <pre>GET /users/{userId}/daily-recommendations?subject=${state.subject}
+GET /users/{userId}/dashboard?subject=${state.subject}
+GET /problems/{pcode}
+POST /submissions
+POST /annotations</pre>
           </section>
         </main>`);
-      drawRadar(u);
+      if(state.loggedIn){ if(state.subject==='math') drawRadar('radar', p.labels, p.chapters.map(c=>c.mastery), p.chapters.map(c=>c.difficulty)); else drawLineGraph('linegraph', p.scoreHistory); }
     }
 
-    function renderRecCard(u,r){
-      const p = PROBLEM_BANK[r.id];
-      const title = p ? `${p.subject} · ${p.unit} · ${p.concept}` : r.title;
-      const status = p ? getResult(u.id,p.id) : null;
-      const statusPill = status ? `<span class="pill ${status.correct?'success':'danger'}">${status.correct?'정답 완료':'오답 저장'}</span>` : `<span class="pill ${r.group==='필수'?'dark':'gray'}">${r.group}</span>`;
-      return `<article class="rec-card ${p?'featured':'locked'}">
+    function renderRecCard(r){
+      const pb=PROBLEM_BANK[r.id];
+      const title=pb ? `${pb.unit} · ${pb.concept}` : r.title;
+      const type=pb ? '실제 문항' : 'AWS 슬롯';
+      const result=pb ? getResult(currentUser().id, state.subject, pb.id) : null;
+      return `<article class="rec-card ${pb?'featured':'locked'}">
         <div>
-          <div class="meta"><span class="pill gray">${String(r.slot).padStart(2,'0')}</span>${statusPill}<span class="pill ${r.mode==='심화'||r.mode==='고난도'?'warn':'gray'}">${r.mode}</span>${p?'<span class="pill success">실제 문항</span>':''}</div>
+          <div class="meta"><span class="pill ${r.group==='보너스'?'gray':''}">${String(r.slot).padStart(2,'0')} · ${r.group}</span><span class="pill ${state.subject==='english'?'red':''}">${r.mode}</span><span class="pill ${pb?'success':'gray'}">${type}</span>${result?`<span class="pill ${result.correct?'success':'danger'}">${result.correct?'정답':'오답'} · ${result.elapsedSec}초</span>`:''}</div>
           <h4>${title}</h4>
-          <p>${r.reason}${p?`<br><span class="mono">${p.unitCode} · ${p.difficultyLabel} · ${p.pcode}</span>`:''}</p>
+          <p>${r.reason}<br><span class="mono">예상 ${r.minutes}분</span></p>
         </div>
         <div class="rec-actions">
-          <strong class="mono">${r.minutes}분</strong>
-          ${p?`<button class="outline-btn" type="button" onclick="openProblem('${p.id}')">문제 풀기</button>`:`<button class="disabled-btn" type="button" disabled>목업 슬롯</button>`}
+          ${pb?`<button class="primary-btn" type="button" onclick="openProblem('${pb.id}')">문제 풀기</button>`:`<button class="disabled-btn" type="button" disabled>연동 예정</button>`}
         </div>
       </article>`;
     }
 
-    function renderChapterTable(u){
-      return `<table class="chapter-table"><thead><tr><th>챕터 / unit</th><th>unit</th><th>숙련도</th><th>난도</th><th>우선순위</th><th>추천 배정</th></tr></thead><tbody>
-        ${u.chapters.map(c=>`<tr><td><b>${c.subject} · ${c.chapter}</b><div style="color:var(--steel);font-size:12px;margin-top:4px">${c.units.join(" · ")}</div></td><td class="mono">${c.units.length}</td><td><div class="score"><span>${c.mastery}</span><span class="bar"><i style="--w:${c.mastery}%;--c:${barColor(c.mastery)}"></i></span></div></td><td><div class="score"><span>${c.difficulty}</span><span class="bar"><i style="--w:${c.difficulty}%;--c:${barColor(c.difficulty)}"></i></span></div></td><td><span class="pill ${tagClass(c.status)}">${c.priority}</span></td><td>${c.weekly}</td></tr>`).join("")}
-      </tbody></table>`;
+    function renderMathAnalysis(){
+      const p=currentProfile(); const mastery=avg(p.chapters.map(c=>c.mastery)); const diff=avg(p.chapters.map(c=>c.difficulty));
+      const realId='P26008-0008'; const result=getResult(currentUser().id,'math',realId); const resultText=result?(result.correct?'정답':'오답'):'미풀이';
+      return `<section class="section analysis-grid">
+        <div class="panel kpi-panel">
+          <div class="section-title"><h3>현황 요약</h3></div>
+          <div class="kpi-grid">
+            <div class="kpi"><label>개념 숙련도</label><strong>${mastery}</strong></div>
+            <div class="kpi"><label>중상난도 대응력</label><strong>${diff}</strong></div>
+            <div class="kpi"><label>오늘 필수</label><strong>${p.required}</strong></div>
+            <div class="kpi"><label>연결 문항</label><strong>${resultText}</strong></div>
+          </div>
+          <div class="weak-list">${p.weakTop.map((w,i)=>`<div class="weak"><b>${i+1}. ${w.title}</b><span>${w.desc}</span></div>`).join('')}</div>
+        </div>
+        <div class="panel chart-panel">
+          <div class="section-title"><h3>${p.accent} 영역 진단</h3><small>${currentUser().units} UNIT · 챕터 9각형 레이더</small></div>
+          <div class="radar-wrap"><svg class="radar" id="radar" viewBox="0 0 760 560" role="img" aria-label="챕터 레이더"></svg><div class="legend"><span><i class="swatch"></i>챕터 숙련도</span><span><i class="swatch dash"></i>중상난도 대응력</span><span class="mono">0–100 내부 진단 점수</span></div></div>
+        </div>
+      </section>
+      <section class="section"><div class="section-title"><h3>챕터별 상세</h3><small>unit · 숙련도 · 난도 대응력 · 주간 배정</small></div>${renderChapterTable(p)}</section>`;
     }
 
-    function drawRadar(u){
-      const svg = document.getElementById("radar"); if(!svg) return;
-      const cx=380, cy=280, r=190, levels=[20,40,60,80,100], n=u.labels.length;
-      const point = (idx,val)=>{ const angle=-Math.PI/2 + idx*2*Math.PI/n; const rr=r*(val/100); return [cx+Math.cos(angle)*rr, cy+Math.sin(angle)*rr]; };
-      const poly = vals => vals.map((v,i)=>point(i,v).join(",")).join(" ");
-      let html="";
-      levels.forEach(l=>{ html += `<polygon points="${poly(new Array(n).fill(l))}" fill="none" stroke="#E2E8F0" stroke-width="1"/>`; });
-      for(let i=0;i<n;i++){ const [x,y]=point(i,100); html += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#D7DCE5"/>`; const [lx,ly]=point(i,118); const [a,b]=u.labels[i]; const anchor=lx>cx+20?"start":lx<cx-20?"end":"middle"; html += `<text x="${lx}" y="${ly-7}" text-anchor="${anchor}" class="radar-axis-label">${a}</text><text x="${lx}" y="${ly+9}" text-anchor="${anchor}" class="radar-axis-sub">${b}</text>`; }
-      levels.forEach(l=>{ const [x,y]=point(0,l); html += `<text x="${x+8}" y="${y+4}" class="radar-grid-label">${l}</text>`; });
-      const mastery = u.chapters.map(c=>c.mastery), diff=u.chapters.map(c=>c.difficulty);
-      html += `<polygon points="${poly(mastery)}" fill="rgba(37,99,235,.14)" stroke="#2563EB" stroke-width="4"/>`;
-      html += `<polygon points="${poly(diff)}" fill="rgba(81,91,111,.04)" stroke="#515B6F" stroke-width="4" stroke-dasharray="9 7"/>`;
-      mastery.forEach((v,i)=>{ const [x,y]=point(i,v); html += `<circle cx="${x}" cy="${y}" r="7" fill="#2563EB" stroke="#fff" stroke-width="3"><title>${u.chapters[i].chapter} 숙련도 ${v}</title></circle>`; });
-      diff.forEach((v,i)=>{ const [x,y]=point(i,v); html += `<circle cx="${x}" cy="${y}" r="6" fill="#fff" stroke="#515B6F" stroke-width="3"><title>${u.chapters[i].chapter} 난도 ${v}</title></circle>`; });
-      svg.innerHTML=html;
+    function renderEnglishAnalysis(){
+      const p=currentProfile(); const latest=p.scoreHistory[p.scoreHistory.length-1].score; const grade=absGrade(latest); const result=getResult(currentUser().id,'english','NewLearn-S00-Q09');
+      return `<section class="section analysis-grid">
+        <div class="panel kpi-panel">
+          <div class="section-title"><h3>현황 요약</h3></div>
+          <div class="kpi-grid">
+            <div class="kpi"><label>예상점수</label><strong>${latest}</strong></div>
+            <div class="kpi"><label>절대평가 등급</label><strong>${grade}</strong></div>
+            <div class="kpi"><label>목표점수</label><strong>${p.target}</strong></div>
+            <div class="kpi"><label>연결 문항</label><strong>${result?(result.correct?'정답':'오답'):'미풀이'}</strong></div>
+          </div>
+          <div class="weak-list">${p.weakTop.map((w,i)=>`<div class="weak"><b>${i+1}. ${w.title}</b><span>${w.desc}</span></div>`).join('')}</div>
+        </div>
+        <div class="panel chart-panel">
+          <div class="section-title"><h3>영어 예상점수 추이</h3><small>날짜별 line graph · 절대평가 기준</small></div>
+          <div class="line-wrap"><svg id="linegraph" viewBox="0 0 760 400" role="img" aria-label="영어 예상점수 추이"></svg><div class="abs-grade">${[1,2,3,4,5,6,7,8,9].map(g=>`<span class="grade-pill ${g===grade?'active':''}">${g}등급 ${g===1?'90+':g===2?'80+':g===3?'70+':g===4?'60+':g===5?'50+':g===6?'40+':g===7?'30+':g===8?'20+':'~19'}</span>`).join('')}</div></div>
+        </div>
+      </section>`;
+    }
+
+    function renderChapterTable(p){
+      return `<table class="chapter-table"><thead><tr><th>과목</th><th>챕터</th><th>unit</th><th>숙련도</th><th>중상난도</th><th>우선순위</th><th>추천 배정</th></tr></thead><tbody>${p.chapters.map(c=>`<tr><td><b>${c.subject}</b></td><td>${c.chapter}</td><td style="color:var(--slate)">${c.units.join(' · ')}</td><td><div class="score"><span>${c.mastery}</span><div class="bar"><i style="--w:${c.mastery}%;--c:${barColor(c.mastery)}"></i></div></div></td><td><div class="score"><span>${c.difficulty}</span><div class="bar"><i style="--w:${c.difficulty}%;--c:${barColor(c.difficulty)}"></i></div></div></td><td><span class="pill ${tagClass(c.status)}">${c.priority}</span></td><td>${c.weekly}</td></tr>`).join('')}</tbody></table>`;
     }
 
     function renderSolve(){
-      const u=USERS[state.userId], p=PROBLEM_BANK[state.problemId];
-      const previous = getResult(u.id,p.id);
-      const selected = state.selected;
-      renderShell(`
-        <button class="back-btn" type="button" onclick="openDashboard()">← 추천 문항으로 돌아가기</button>
-        <div class="solver-shell">
-          <section class="panel solver-main">
-            <div class="solver-head">
-              <div><div class="eyebrow">PROBLEM SOLVING · ${u.name}</div><h2>${p.subject} · ${p.unit}</h2><p style="margin:8px 0 0;color:var(--slate)">${p.concept} · ${p.difficultyLabel} · ${p.pcode}</p></div>
-              <div><div class="timer" id="timer">00:00</div><div style="text-align:right;color:var(--steel);font-size:12px;font-weight:800">목표 ${p.estimatedSeconds[u.id]}초</div></div>
-            </div>
-            <div class="question-box">
-              <div class="problem-text">${p.statement}</div>
-              <div class="options" id="options">
-                ${p.options.map((o,i)=>`<button type="button" class="opt ${selected===i?'selected':''}" onclick="selectOption(${i})">${o}</button>`).join("")}
-              </div>
-            </div>
-            <div class="scratch">
-              <div class="scratch-head"><b>간단 필기 영역</b><div class="tools"><button class="tool-btn" onclick="clearCanvas()" type="button">지우기</button></div></div>
-              <canvas id="scratchpad"></canvas>
-            </div>
-            <div class="solve-actions">
-              <button class="ghost-btn" onclick="openDashboard()" type="button">나중에 풀기</button>
-              <button class="primary-btn" onclick="submitAnswer()" type="button">답안 제출</button>
-            </div>
-            <div id="feedback-root"></div>
-          </section>
-          <aside class="panel solver-side">
-            <div class="side-card"><h4>추천 근거</h4><p style="margin:0;color:var(--slate);font-size:13.5px;line-height:1.6">${p.metaReason[u.id]}</p></div>
-            <div class="side-card"><h4>문항 메타데이터</h4><dl><dt>과목</dt><dd>${p.subject}</dd><dt>챕터</dt><dd>${p.chapter}</dd><dt>unit</dt><dd>${p.unit}</dd><dt>concept</dt><dd>${p.concept}</dd><dt>난도</dt><dd>${p.difficultyLabel}</dd><dt>유형</dt><dd>객관식</dd></dl></div>
-            <div class="side-card"><h4>오늘 큐</h4><div class="queue-mini">${u.recommendations.slice(0,7).map(r=>`<div class="mini"><b>${String(r.slot).padStart(2,'0')} · ${PROBLEM_BANK[r.id]?PROBLEM_BANK[r.id].unit:r.title}</b><span>${r.group} · ${r.mode}</span></div>`).join("")}</div></div>
-            ${previous?`<div class="side-card"><h4>이전 풀이 기록</h4><div class="result-row"><b>${previous.correct?'정답':'오답'}</b><span>${previous.elapsedSec}초 · 선택 ${previous.selected+1}번</span></div></div>`:""}
-          </aside>
-        </div>`);
-      setupCanvas();
+      const p=PROBLEM_BANK[state.problemId]; const u=currentUser(); const profile=currentProfile(); const previous=getResult(u.id,state.subject,p.id); const isEnglish=p.subjectType==='english';
+      renderShell(`<div class="solver-shell">
+        <section class="panel solver-main">
+          <button class="back-btn" onclick="openDashboard()" type="button">← 리포트로 돌아가기</button>
+          <div class="solver-head"><div><div class="eyebrow">${p.pcode} · ${p.difficultyLabel}</div><h2>${isEnglish?p.instruction:p.unit+' · '+p.concept}</h2></div><div><div class="timer" id="timer">00:00</div><span class="pill ${isEnglish?'red':''}">${subjectLabel()}</span></div></div>
+          ${isEnglish ? renderEnglishProblem(p) : renderMathProblem(p)}
+          <div class="solve-actions"><button class="ghost-btn" onclick="openDashboard()" type="button">나중에 풀기</button><button class="primary-btn" onclick="submitAnswer()" type="button">답안 제출</button></div>
+          <div id="feedback-root"></div>
+        </section>
+        <aside class="panel solver-side">
+          <div class="side-card"><h4>추천 근거</h4><p>${p.metaReason[u.id]}</p></div>
+          <div class="side-card"><h4>문항 메타데이터</h4><dl><dt>과목</dt><dd>${p.subject}</dd><dt>챕터</dt><dd>${p.chapter}</dd><dt>unit</dt><dd>${p.unit}</dd><dt>concept</dt><dd>${p.concept}</dd><dt>난도</dt><dd>${p.difficultyLabel}</dd><dt>유형</dt><dd>${isEnglish?'영어 독해':'객관식'}</dd></dl></div>
+          <div class="side-card"><h4>오늘 큐</h4><div class="queue-mini">${profile.recommendations.slice(0,7).map(r=>`<div class="mini"><b>${String(r.slot).padStart(2,'0')} · ${PROBLEM_BANK[r.id]?PROBLEM_BANK[r.id].unit:r.title}</b><span>${r.group} · ${r.mode}</span></div>`).join('')}</div></div>
+          ${previous?`<div class="side-card"><h4>이전 풀이 기록</h4><div class="result-row"><b>${previous.correct?'정답':'오답'}</b><span>${previous.elapsedSec}초 · 선택 ${previous.selected+1}번</span></div></div>`:''}
+        </aside>
+      </div>`);
+      if(isEnglish) setupEnglishAnnotation(); else setupCanvas();
       startTimer();
     }
 
-    function selectOption(i){ state.selected=i; document.querySelectorAll('.opt').forEach((el,idx)=>{ el.classList.toggle('selected',idx===i); }); }
-    function submitAnswer(){
-      const u=USERS[state.userId], p=PROBLEM_BANK[state.problemId];
-      if(state.selected===null){ alert("답안을 선택하세요."); return; }
-      const elapsedSec = Math.max(1, Math.round((Date.now()-state.startTime)/1000));
-      const correct = state.selected === p.answerIndex;
-      saveResult(u.id,p.id,{correct, selected:state.selected, answerIndex:p.answerIndex, elapsedSec, submittedAt:new Date().toISOString(), wrongReason:null});
-      const opts=document.querySelectorAll('.opt'); opts.forEach((el,idx)=>{ el.disabled=true; if(idx===p.answerIndex) el.classList.add('correct'); if(idx===state.selected && !correct) el.classList.add('wrong'); });
-      const root=document.getElementById('feedback-root');
-      root.innerHTML = `<div class="feedback ${correct?'correct':'wrong'}"><h3>${correct?'정답입니다.':'오답입니다.'}</h3><p>선택: ${p.options[state.selected]} · 정답: ${p.options[p.answerIndex]} · 풀이시간: ${elapsedSec}초</p><div class="explain"><b>해설</b>${p.explanation}</div>${correct?`<div class="cause-tags"><button type="button" onclick="openDashboard()">대시보드 반영 확인</button><button type="button" onclick="openProblem('${p.id}')">다시 풀기</button></div>`:`<div class="cause-tags"><button onclick="setWrongReason('개념 부족')">개념 부족</button><button onclick="setWrongReason('조건 오독')">조건 오독</button><button onclick="setWrongReason('계산 실수')">계산 실수</button><button onclick="setWrongReason('시간 초과')">시간 초과</button><button onclick="setWrongReason('풀이 방향 불명확')">풀이 방향 불명확</button></div><p style="margin-top:12px;color:#991b1b;font-weight:800">오답노트 저장 + D+1 쌍둥이 문항 예약 상태로 처리됩니다.</p>`}</div>`;
+    function renderMathProblem(p){
+      return `<div class="question-box"><div class="problem-text">${p.statement}</div><div class="options math-options" id="options">${p.options.map((o,i)=>`<button type="button" class="opt" onclick="selectOption(${i})">${o}</button>`).join('')}</div></div><div class="scratch"><div class="scratch-head"><b>간단 필기 영역</b><div class="tools"><button class="tool-btn" onclick="clearCanvas()" type="button">지우기</button></div></div><canvas id="scratchpad"></canvas></div>`;
     }
-    function setWrongReason(reason){ const u=USERS[state.userId], p=PROBLEM_BANK[state.problemId]; const all=getResults(); const key=`${u.id}:${p.id}`; if(all[key]){ all[key].wrongReason=reason; all[key].twinScheduled="D+1"; localStorage.setItem("ns_poc_results",JSON.stringify(all)); } alert(`${reason} 태그로 오답노트에 저장했습니다.`); }
+    function cleanChoiceLabel(text){ return String(text).replace(/^[①②③④⑤]\s*/,''); }
+    function circledChoiceLabel(i){ return ['①','②','③','④','⑤'][i] || String(i+1); }
+    function renderEnglishProblem(p){
+      return `<div class="question-box"><div class="passage-toolbar"><b>본문 필기</b><button class="tool-btn" onclick="highlightSelection()" type="button">형광펜</button><button class="tool-btn" onclick="underlineSelection()" type="button">밑줄</button><button class="tool-btn" onclick="insertInlineNote()" type="button">메모 삽입</button><button class="tool-btn" onclick="resetPassage()" type="button">본문 초기화</button><span style="color:var(--steel);font-size:12px;font-weight:800">지문 일부를 드래그한 뒤 사용</span></div><div class="passage" id="englishPassage" contenteditable="true" spellcheck="false">${p.passage}</div><div class="options english-options" id="options">${p.options.map((o,i)=>`<button type="button" class="opt" onclick="selectOption(${i})"><span class="opt-num">${circledChoiceLabel(i)}</span><span class="opt-text">${cleanChoiceLabel(o)}</span></button>`).join('')}</div></div>`;
+    }
+
+    window.selectOption=function(i){ state.selected=i; document.querySelectorAll('.opt').forEach((el,idx)=>{ el.classList.toggle('selected',idx===i); }); };
+    window.submitAnswer=function(){
+      const u=currentUser(), p=PROBLEM_BANK[state.problemId]; if(state.selected===null){ alert('답안을 선택하세요.'); return; }
+      const elapsedSec=Math.max(1,Math.round((Date.now()-state.startTime)/1000)); const correct=state.selected===p.answerIndex;
+      const annotation = p.subjectType==='english' ? (document.getElementById('englishPassage')?.innerHTML || '') : null;
+      saveResult(u.id,p.subjectType,p.id,{correct, selected:state.selected, answerIndex:p.answerIndex, elapsedSec, submittedAt:new Date().toISOString(), annotation, wrongReason:null});
+      document.querySelectorAll('.opt').forEach((el,idx)=>{ el.disabled=true; if(idx===p.answerIndex) el.classList.add('correct'); if(idx===state.selected && !correct) el.classList.add('wrong'); });
+      const root=document.getElementById('feedback-root');
+      root.innerHTML=`<div class="feedback ${correct?'correct':'wrong'}"><h3>${correct?'정답입니다.':'오답입니다.'}</h3><p>선택: ${p.options[state.selected]} · 정답: ${p.options[p.answerIndex]} · 풀이시간: ${elapsedSec}초</p><div class="explain"><b>해설</b>${p.explanation}</div>${correct?`<div class="cause-tags"><button type="button" onclick="openDashboard()">대시보드 반영 확인</button><button type="button" onclick="openProblem('${p.id}')">다시 풀기</button></div>`:`<div class="cause-tags"><button onclick="setWrongReason('개념 부족')">개념 부족</button><button onclick="setWrongReason('조건 오독')">조건 오독</button><button onclick="setWrongReason('선지 비교 실패')">선지 비교 실패</button><button onclick="setWrongReason('시간 초과')">시간 초과</button><button onclick="setWrongReason('풀이 방향 불명확')">풀이 방향 불명확</button></div><p style="margin-top:12px;color:#991b1b;font-weight:900">오답노트 저장 + D+1 쌍둥이 문항 예약 상태로 처리됩니다.</p>`}</div>`;
+    };
+    window.setWrongReason=function(reason){ const u=currentUser(), p=PROBLEM_BANK[state.problemId]; const all=getResults(); const key=`${u.id}:${p.subjectType}:${p.id}`; if(all[key]){ all[key].wrongReason=reason; all[key].twinScheduled='D+1'; localStorage.setItem('ns_poc_results_v2',JSON.stringify(all)); } alert(`${reason} 태그로 오답노트에 저장했습니다.`); };
 
     function startTimer(){ if(timerHandle) clearInterval(timerHandle); const el=document.getElementById('timer'); if(!el) return; timerHandle=setInterval(()=>{ const sec=Math.max(0,Math.floor((Date.now()-state.startTime)/1000)); const mm=String(Math.floor(sec/60)).padStart(2,'0'), ss=String(sec%60).padStart(2,'0'); el.textContent=`${mm}:${ss}`; },250); }
     function setupCanvas(){
-      const canvas=document.getElementById('scratchpad'); if(!canvas) return; const ctx=canvas.getContext('2d');
-      const resize=()=>{ const rect=canvas.getBoundingClientRect(); const ratio=window.devicePixelRatio||1; canvas.width=Math.max(1,Math.floor(rect.width*ratio)); canvas.height=Math.max(1,Math.floor(rect.height*ratio)); ctx.setTransform(ratio,0,0,ratio,0,0); ctx.lineWidth=2.6; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0b1220'; };
-      resize(); window.addEventListener('resize',resize,{once:true}); let drawing=false,last=null;
-      const pos=e=>{ const rect=canvas.getBoundingClientRect(); return {x:e.clientX-rect.left,y:e.clientY-rect.top}; };
-      canvas.addEventListener('pointerdown',e=>{ drawing=true; last=pos(e); canvas.setPointerCapture(e.pointerId); });
-      canvas.addEventListener('pointermove',e=>{ if(!drawing) return; const p=pos(e); ctx.beginPath(); ctx.moveTo(last.x,last.y); ctx.lineTo(p.x,p.y); ctx.stroke(); last=p; });
-      canvas.addEventListener('pointerup',()=>{ drawing=false; last=null; }); canvas.addEventListener('pointercancel',()=>{ drawing=false; last=null; });
+      const canvas=document.getElementById('scratchpad'); if(!canvas) return; const ctx=canvas.getContext('2d'); const resize=()=>{ const rect=canvas.getBoundingClientRect(); const ratio=window.devicePixelRatio||1; canvas.width=Math.max(1,Math.floor(rect.width*ratio)); canvas.height=Math.max(1,Math.floor(rect.height*ratio)); ctx.setTransform(ratio,0,0,ratio,0,0); ctx.lineWidth=2.6; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0b1220'; };
+      resize(); window.addEventListener('resize',resize,{once:true}); let drawing=false,last=null; const pos=e=>{ const rect=canvas.getBoundingClientRect(); return {x:e.clientX-rect.left,y:e.clientY-rect.top}; };
+      canvas.addEventListener('pointerdown',e=>{ drawing=true; last=pos(e); canvas.setPointerCapture(e.pointerId); }); canvas.addEventListener('pointermove',e=>{ if(!drawing) return; const p=pos(e); ctx.beginPath(); ctx.moveTo(last.x,last.y); ctx.lineTo(p.x,p.y); ctx.stroke(); last=p; }); canvas.addEventListener('pointerup',()=>{ drawing=false; last=null; }); canvas.addEventListener('pointercancel',()=>{ drawing=false; last=null; });
     }
-    function clearCanvas(){ const canvas=document.getElementById('scratchpad'); if(!canvas) return; const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height); }
+    window.clearCanvas=function(){ const canvas=document.getElementById('scratchpad'); if(!canvas) return; const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height); };
 
-    function render(){ if(timerHandle) clearInterval(timerHandle); if(state.page==="solve") renderSolve(); else renderDashboard(); }
+    function selectionInsidePassage(){ const sel=window.getSelection(); const box=document.getElementById('englishPassage'); if(!sel || sel.rangeCount===0 || !box) return false; const node=sel.anchorNode; return node && box.contains(node.nodeType===1?node:node.parentNode); }
+    function setupEnglishAnnotation(){ const p=PROBLEM_BANK[state.problemId]; window.__originalPassage = p.passage; }
+    window.highlightSelection=function(){ if(!selectionInsidePassage()){ alert('지문 안의 텍스트를 먼저 드래그하세요.'); return; } document.execCommand('backColor', false, '#fff3a3'); };
+    window.underlineSelection=function(){ if(!selectionInsidePassage()){ alert('지문 안의 텍스트를 먼저 드래그하세요.'); return; } document.execCommand('underline', false, null); };
+    window.insertInlineNote=function(){ const box=document.getElementById('englishPassage'); if(!box) return; box.focus(); document.execCommand('insertHTML', false, '<span class="inline-note" contenteditable="true">메모</span>'); };
+    window.resetPassage=function(){ const box=document.getElementById('englishPassage'); if(box) box.innerHTML = window.__originalPassage || PROBLEM_BANK['NewLearn-S00-Q09'].passage; };
+
+    function drawRadar(id, labels, mastery, difficulty){
+      const svg=document.getElementById(id); if(!svg) return; const cx=380, cy=275, r=190, n=labels.length; const levels=[20,40,60,80,100]; const pts=(values)=>values.map((v,i)=>{ const a=-Math.PI/2 + i*2*Math.PI/n; const rr=r*(v/100); return [cx+Math.cos(a)*rr, cy+Math.sin(a)*rr]; }); const poly=(points)=>points.map(p=>p.join(',')).join(' '); let html='';
+      levels.forEach(l=>{ const points=labels.map((_,i)=>{ const a=-Math.PI/2+i*2*Math.PI/n; const rr=r*(l/100); return [cx+Math.cos(a)*rr,cy+Math.sin(a)*rr]; }); html += `<polygon points="${poly(points)}" fill="none" stroke="#dbe2ee" stroke-width="1"/>`; html += `<text x="${cx+6}" y="${cy-r*(l/100)+4}" class="radar-grid-label">${l}</text>`; });
+      labels.forEach((lab,i)=>{ const a=-Math.PI/2+i*2*Math.PI/n; const x2=cx+Math.cos(a)*r, y2=cy+Math.sin(a)*r; html += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="#dbe2ee" stroke-width="1"/>`; const lx=cx+Math.cos(a)*(r+70), ly=cy+Math.sin(a)*(r+70); html += `<text x="${lx}" y="${ly-7}" text-anchor="middle" class="radar-axis-label">${lab[0]}</text><text x="${lx}" y="${ly+10}" text-anchor="middle" class="radar-axis-sub">${lab[1]}</text>`; });
+      const p1=pts(mastery), p2=pts(difficulty); html += `<polygon points="${poly(p1)}" fill="var(--theme)" opacity=".18" stroke="var(--theme)" stroke-width="4"/>`; html += `<polyline points="${poly(p2)} ${p2[0].join(',')}" fill="none" stroke="#566176" stroke-width="3" stroke-dasharray="7 7"/>`; p1.forEach(p=>html+=`<circle cx="${p[0]}" cy="${p[1]}" r="7" fill="var(--theme)" stroke="#fff" stroke-width="3"/>`); p2.forEach(p=>html+=`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#fff" stroke="#566176" stroke-width="3"/>`); svg.innerHTML=html;
+    }
+
+    function drawLineGraph(id, data){
+      const svg=document.getElementById(id); if(!svg) return; const W=760,H=400, L=62, R=26, T=30, B=58; const chartW=W-L-R, chartH=H-T-B; const x=i=>L + (chartW*(i/(data.length-1))); const y=s=>T + chartH*(1-s/100); let html='';
+      [90,80,70,60].forEach(cut=>{ html += `<rect x="${L}" y="${y(cut)}" width="${chartW}" height="${cut===90?y(80)-y(90):cut===80?y(70)-y(80):cut===70?y(60)-y(70):y(50)-y(60)}" class="grade-band"/>`; });
+      [100,90,80,70,60,50,40].forEach(v=>{ html += `<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" class="chart-grid"/><text x="${L-12}" y="${y(v)+4}" text-anchor="end" class="chart-label">${v}</text>`; });
+      data.forEach((d,i)=>{ html += `<line x1="${x(i)}" y1="${T}" x2="${x(i)}" y2="${H-B}" class="chart-grid" opacity=".55"/><text x="${x(i)}" y="${H-B+28}" text-anchor="middle" class="chart-label">${d.date}</text>`; });
+      const path=data.map((d,i)=>`${i?'L':'M'} ${x(i)} ${y(d.score)}`).join(' '); html += `<path d="${path}" class="grade-line"/>`; data.forEach((d,i)=>{ html += `<circle cx="${x(i)}" cy="${y(d.score)}" r="6" class="grade-dot"/><text x="${x(i)}" y="${y(d.score)-12}" text-anchor="middle" class="chart-score-label">${d.score}</text>`; });
+      [[90,'1등급'],[80,'2등급'],[70,'3등급'],[60,'4등급']].forEach(([cut,label])=>{ html += `<text x="${W-R-8}" y="${y(cut)+16}" text-anchor="end" class="chart-label">${label} 컷</text>`; });
+      html += `<line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" class="chart-axis"/><line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" class="chart-axis"/>`;
+      svg.innerHTML=html;
+    }
+
+    function render(){ if(timerHandle) clearInterval(timerHandle); if(state.page==='solve') renderSolve(); else renderDashboard(); }
     render();
   </script>
 </body>
